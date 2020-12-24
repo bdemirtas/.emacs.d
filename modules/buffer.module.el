@@ -12,27 +12,6 @@
 (when (display-graphic-p)
   (setq x-select-request-type '(UTF8_STRING COMPOUND_TEXT TEXT STRING)))
 
-(use-package dired
-  :ensure nil
-  :delight "Dired "
-  :custom
-  (dired-auto-revert-buffer t)
-  (dired-dwim-target t)
-  (dired-hide-details-hide-symlink-targets nil)
-  (dired-listing-switches "-alh")
-  (dired-ls-F-marks-symlinks nil)
-  (dired-recursive-copies 'always))
-
-(use-package dired-narrow
-  :bind (("C-c C-n" . dired-narrow)
-         ("C-c C-f" . dired-narrow-fuzzy)
-         ("C-c C-r" . dired-narrow-regexp)))
-
-(use-package dired-subtree
-  :bind (:map dired-mode-map
-              ("<backtab>" . dired-subtree-cycle)
-              ("<tab>" . dired-subtree-toggle)))
-
 (use-package smartscan
   :ensure t
   :config
@@ -154,5 +133,13 @@
 (use-package subword
   :ensure nil
   :hook ((java-mode kotlin-mode go-mode) . subword-mode))
+
+;; Multiple cusors are a must. Make <return> insert a newline; multiple-cursors-mode can still be disabled with C-g.
+(use-package multiple-cursors
+  :config
+  (setq mc/always-run-for-all 1)
+  (global-set-key (kbd "s-d") 'mc/mark-next-like-this)
+  (global-set-key (kbd "s-D") 'mc/mark-all-dwim)
+  (define-key mc/keymap (kbd "<return>") nil))
 
 (provide 'buffer.module)

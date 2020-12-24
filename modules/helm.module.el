@@ -1,5 +1,6 @@
 (use-package helm-projectile
   :ensure t
+  :bind ("C-c p h" . helm-projectile)
   :config
   ;; So one can select a file in the project directly.
   (setq projectile-switch-project-action 'helm-projectile))
@@ -91,6 +92,9 @@
 (when (executable-find "ag")
   (use-package helm-ag
     :ensure t))
+
+(define-advice helm-projectile-grep (:override (&optional dir) ag)
+  (helm-do-ag (or dir (projectile-project-root))))
 
 (when (executable-find "git")
   (use-package helm-ls-git

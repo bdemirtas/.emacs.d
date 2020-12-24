@@ -5,7 +5,7 @@
     :init
     (setq magit-last-seen-setup-instructions "1.4.0")
     :config
-    (setq vc-handled-backends (delq 'Git vc-handled-backends)) ; disable default VCS
+    (setq vc-handled-backends (delq 'Git vc-handled-backends) magit-repository-directories '(("\~/Projects" . 4)) )
     :hook ((after-save . magit-after-save-refresh-status)
            (git-commit-mode . flyspell-mode))
     :bind (("C-x g" . magit-status)))
