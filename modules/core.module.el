@@ -20,5 +20,6 @@
   :ensure t)
 
 (require 'vcs.module)
+(require 'sql.module)
 
 (provide 'core.module)

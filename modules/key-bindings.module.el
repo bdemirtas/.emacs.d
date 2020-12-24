@@ -66,4 +66,7 @@
 (global-set-key (kbd "M-u") 'upcase-dwim)
 (global-set-key (kbd "M-l") 'downcase-dwim)
 
+;; SQL
+(global-set-key (kbd "C-c eb") 'ejc-get-temp-editor-buffer)
+
 (provide 'key-bindings.module)

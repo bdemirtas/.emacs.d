@@ -31,3 +31,5 @@ notes
 /backups/
 /.dap-breakpoints
 /.org-id-locations
+/var
+sql-connections.module.el
