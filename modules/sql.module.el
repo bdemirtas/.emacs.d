@@ -1,4 +1,9 @@
 ;; database SQL client using Clojure JDBC
+
+(defvar pg-jdbc-driver
+  "~/.m2/repository/postgresql/postgresql/9.3-1102.jdbc41/postgresql-9.3-1102.jdbc41.jar"
+  "Location of postgres jdbc driver for ejc.")
+
 (use-package ejc-sql
   :commands (ejc-connect ejc-connect-existing-repl ejc-sql-mode)
   :bind (:map ejc-sql-mode-keymap

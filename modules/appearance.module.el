@@ -16,7 +16,7 @@
 
 (use-package dash :ensure t)
 (use-package diminish :ensure t)
-(use-package monokai-theme
+(use-package cyberpunk-theme
   :ensure t
   :defer t)
 
@@ -25,6 +25,7 @@
   :config
   (auto-compile-on-load-mode))
 
-(load-theme 'monokai t)
+(add-hook 'after-init-hook
+          (lambda () (load-theme 'cyberpunk t)))
 
 (provide 'appearance.module)

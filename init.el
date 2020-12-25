@@ -85,4 +85,3 @@
 (require 'core.module)
 (require 'python.module)
 (require 'key-bindings.module)
-;; (require 'sql-connections.module)

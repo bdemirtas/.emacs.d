@@ -1,4 +1,7 @@
 (use-package projectile
+  :init (setq projectile-enable-caching t)
+  :custom
+  (projectile-indexing-method 'alien)
   :ensure t
   :functions projectile-project-name projectile-mode
   :config
