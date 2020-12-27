@@ -23,27 +23,6 @@
   (setq-default save-place t)
   (setq save-place-file (concat user-emacs-directory "saved-places")))
 
-;; Same-frame speedbar
-(use-package sr-speedbar
-  :ensure t
-  :init
-  ;; Use Semantic with Speedbar
-  (add-hook 'speedbar-load-hook #'(lambda () (require 'semantic/sb)))
-  ;; Win-S
-  :bind ("s-S" . sr-speedbar-toggle))
-
-(global-set-key (kbd "RET") 'newline-and-indent)
-
-(setq require-final-newline t)
-
-;; Start from the top when usint C-l
-(setq recenter-positions '(top middle bottom))
-
-;; use shift to move around windows
-(windmove-default-keybindings 'shift)
-;; Window splitting and navigation.
-(winner-mode 1)
-
 (use-package windresize
   :ensure t
   :bind ("C-c r" . windresize))
@@ -86,10 +65,7 @@
   (setq ispell-program-name "aspell"
         ;; http://blog.binchen.org/posts/effective-spell-check-in-emacs.html
         ;; force the English dictionary, support Camel Case spelling check (--run-together)
-        ispell-extra-args '("--sug-mode=ultra" "--lang=en_US" "--run-together" "--run-together-limit=5" "--run-together-min=2")))
-
-(use-package hideshow
-  :delight hs-minor-mode)
+        ispell-extra-args '("--sug-mode=ultra" "--lang=en_CA" "--run-together" "--run-together-limit=5" "--run-together-min=2")))
 
 (use-package drag-stuff
   :ensure t
@@ -108,28 +84,12 @@
   :init
   (add-hook 'prog-mode-hook #'clean-aindent-mode))
 
-;; unobtrusively trim white spaces from end of line
-(use-package ws-butler
-  :ensure t
-  :init
-  (add-hook 'prog-mode-hook #'ws-butler-mode)
-  :delight ws-butler-mode)
-
-;; improved undo system
 (use-package undo-tree
   :ensure t
   :config
   (global-undo-tree-mode)
   :delight undo-tree-mode)
 
-;; Works best when Editorconfig C Core is installed
-(use-package editorconfig
-  :ensure t
-  :config
-  (editorconfig-mode 1)
-  :delight editorconfig-mode)
-
-;; Better navigation for CamelCase words
 (use-package subword
   :ensure nil
   :hook ((java-mode kotlin-mode go-mode) . subword-mode))

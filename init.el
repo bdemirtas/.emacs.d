@@ -29,7 +29,10 @@
 (setq load-prefer-newer t)
 
 
+(setenv "PATH" (concat (getenv "PATH") ":/usr/local/bin"))
+(setq exec-path (append exec-path '("/usr/local/bin")))
 (add-to-list 'exec-path "/usr/local/bin/")
+(add-to-list 'exec-path "/usr/bin/")
 
 (tool-bar-mode -1)
 (scroll-bar-mode -1)
@@ -63,6 +66,10 @@
 ;; Ensure correct indentation for use-package.
 (put 'use-package 'lisp-indent-function 1)
 
+;; Save customize in separate file
+(setq custom-file "~/.emacs.d/custom.el")
+(load custom-file)
+
 (use-package no-littering)
 
 (use-package delight
@@ -85,3 +92,7 @@
 (require 'core.module)
 (require 'python.module)
 (require 'key-bindings.module)
+(require 'utils.module)
+(require 'org.module)
+(require 'sx.module)
+(require 'handy-functions)

@@ -1,3 +1,5 @@
+(use-package pip-requirements)
+
 (use-package pyvenv
   :demand
   :config

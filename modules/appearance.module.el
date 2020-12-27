@@ -15,17 +15,16 @@
 (fset 'yes-or-no-p 'y-or-n-p)
 
 (use-package dash :ensure t)
+
 (use-package diminish :ensure t)
-(use-package cyberpunk-theme
-  :ensure t
-  :defer t)
+
+(use-package spacemacs-theme
+  :defer t
+  :init (load-theme 'spacemacs-dark t))
 
 (use-package auto-compile
   :ensure t
   :config
   (auto-compile-on-load-mode))
-
-(add-hook 'after-init-hook
-          (lambda () (load-theme 'cyberpunk t)))
 
 (provide 'appearance.module)

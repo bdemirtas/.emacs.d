@@ -1,0 +1,6 @@
+
+* Atlas Technical Debt
+  * [ ] Not forget to add swagger-all in JenkinsFile
+  * [ ] Fix swagger-all function for flask-restx
+  * [ ] Migrate back flask-restplus to flask-restx
+  * [ ] Fully move to Emacs from PyCharm

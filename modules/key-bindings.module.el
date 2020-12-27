@@ -10,6 +10,16 @@
 
 ;; ----------------------
 ;; Navigation and editing
+(setq require-final-newline t)
+;; Start from the top when usint C-l
+(setq recenter-positions '(top middle bottom))
+
+;; use shift to move around windows
+(windmove-default-keybindings 'shift)
+;; Window splitting and navigation.
+(winner-mode 1)
+
+(global-set-key (kbd "RET") 'newline-and-indent)
 (global-set-key (kbd "s-.") 'anaconda-mode-find-definitions)
 (global-set-key (kbd "s-,") 'anaconda-mode-go-back)
 
@@ -42,8 +52,8 @@
 (bind-key* "S-<delete>" 'kill-word)
 
 ;; Use =super= (which is =Cmd=) for movement and selection just like in macOS.
-(global-set-key (kbd "s-<right>") 'end-of-visual-line)
 (global-set-key (kbd "s-<left>") 'beginning-of-visual-line)
+(global-set-key (kbd "s-<right>") 'end-of-visual-line)
 (global-set-key (kbd "s-<up>") 'beginning-of-buffer)
 (global-set-key (kbd "s-<down>") 'end-of-buffer)
 (global-set-key (kbd "s-l") 'goto-line)
@@ -69,4 +79,6 @@
 ;; SQL
 (global-set-key (kbd "C-c eb") 'ejc-get-temp-editor-buffer)
 
+;; Crux
+(global-set-key (kbd "C-d") #'crux-duplicate-current-line-or-region	w)
 (provide 'key-bindings.module)

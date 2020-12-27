@@ -10,7 +10,15 @@
          ("C-c i" . helm-projectile-ag)
          ("C-x c t" . helm-top)
          ("C-," . helm-mini))
-  :config (helm-mode 1))
+  :config
+  (setq helm-move-to-line-cycle-in-source t
+        helm-ff-file-name-history-use-recentf t
+        helm-ff-newfile-prompt-p nil
+        helm-ff-skip-boring-files t
+        helm-ff-ido-style-backspace 'always
+        helm-ff-auto-update-initial-value t
+        helm-ff--auto-update-state t)
+  (helm-mode 1))
 (use-package helm-projectile)
 (use-package helm-company)
 (use-package helm-ag)

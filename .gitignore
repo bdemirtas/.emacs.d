@@ -31,5 +31,6 @@ notes
 /backups/
 /.dap-breakpoints
 /.org-id-locations
-/var
+/var/
+var/anaconda-mode
 sql-connections.module.el
