@@ -1,3 +1,7 @@
+;; Experimentation keybindings
+;;(global-set-key (kbd "C-<right>") 'forward-word)
+;;(global-set-key (kbd "C-<left>") 'backward-word)
+
 ;; Emacs control is Ctrl. Emacs Super is Command. Emacs Meta is Alt. Right Alt (option) can be used to enter symbols like em dashes =—=.
 (when (is-macos)
   (setq
@@ -23,7 +27,7 @@
 (global-set-key (kbd "s-.") 'anaconda-mode-find-definitions)
 (global-set-key (kbd "s-,") 'anaconda-mode-go-back)
 
-;; Move more quickly
+Move more quickly
 (global-set-key (kbd "C-S-n")
   (lambda ()(interactive)
     (ignore-errors (next-line 5))))
@@ -80,5 +84,13 @@
 (global-set-key (kbd "C-c eb") 'ejc-get-temp-editor-buffer)
 
 ;; Crux
-(global-set-key (kbd "C-d") #'crux-duplicate-current-line-or-region	w)
+(global-set-key (kbd "C-d") #'crux-duplicate-current-line-or-region)
+(global-set-key (kbd "C-c D") #'crux-delete-file-and-buffer)
+
+;; Comment
+(global-set-key (kbd "C-;") #'comment-or-uncomment-line-or-region)
+(global-set-key [remap kill-whole-line] #'crux-kill-whole-line)
+(global-set-key (kbd "s-r") #'crux-recentf-find-file)
+(global-set-key [(shift return)] #'crux-smart-open-line)
+
 (provide 'key-bindings.module)

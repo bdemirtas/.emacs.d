@@ -6,11 +6,7 @@
   (setq vc-handled-backends (delq 'Git vc-handled-backends) magit-repository-directories '(("\~/Projects" . 4)) )
   :hook ((after-save . magit-after-save-refresh-status)
          (git-commit-mode . flyspell-mode))
-  :bind (("C-x m" . magit-status)
-         ("C-x j" . magit-dispatch)
-         ("C-x k" . magit-file-dispatch)
-         ("C-x l" . magit-log-buffer-file)
-         ("C-x b" . magit-blame)))
+  :bind (("C-x m" . magit-status)))
 
 (use-package gitignore-mode
   :ensure t)

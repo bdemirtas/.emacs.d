@@ -18,9 +18,9 @@
 
 (use-package diminish :ensure t)
 
-(use-package spacemacs-theme
+(use-package cyberpunk-theme
   :defer t
-  :init (load-theme 'spacemacs-dark t))
+  :init (load-theme 'cyberpunk t))
 
 (use-package auto-compile
   :ensure t

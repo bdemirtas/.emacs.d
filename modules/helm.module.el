@@ -22,7 +22,8 @@
 (use-package helm-projectile)
 (use-package helm-company)
 (use-package helm-ag)
-(use-package helm-swoop)
+(use-package helm-swoop
+  :bind(("C-s". 'helm-swoop)))
 (use-package helm-descbinds
   :defer t
   :bind (("C-h b" . helm-descbinds)

@@ -1,3 +1,11 @@
+;; yaml-mode
+(use-package yaml-mode
+  :mode ("\\.yml$" "\\.yaml$"))
+
+;; Jenkins
+(use-package jenkinsfile-mode
+  :ensure t)
+
 ;; Docker
 (use-package docker
   :bind ("C-c d" . docker))

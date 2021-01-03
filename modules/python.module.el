@@ -11,10 +11,8 @@
   :bind
     (("C-c =" . blacken-buffer)))
 
-(use-package py-isort
-  :after python
-  :hook ((python-mode . pyvenv-mode)
-         (before-save . py-isort-before-save)))
+;(use-package py-isort
+;  :after python)
 
 (defun pyvenv-autoload ()
           (interactive)
