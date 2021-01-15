@@ -30,9 +30,11 @@
 
 
 (setenv "PATH" (concat (getenv "PATH") ":/usr/local/bin"))
+(setenv "PATH" (concat (getenv "PATH") ":/Library/TeX/texbin/"))
 (setq exec-path (append exec-path '("/usr/local/bin")))
 (add-to-list 'exec-path "/usr/local/bin/")
 (add-to-list 'exec-path "/usr/bin/")
+(add-to-list 'exec-path "/Library/TeX/texbin/")
 
 (tool-bar-mode -1)
 (scroll-bar-mode -1)

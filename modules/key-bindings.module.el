@@ -27,7 +27,7 @@
 (global-set-key (kbd "s-.") 'anaconda-mode-find-definitions)
 (global-set-key (kbd "s-,") 'anaconda-mode-go-back)
 
-Move more quickly
+;;Move more quickly
 (global-set-key (kbd "C-S-n")
   (lambda ()(interactive)
     (ignore-errors (next-line 5))))
@@ -50,7 +50,6 @@ Move more quickly
 
 ;; Kill line with =s-Backspace=, which is =Cmd-Backspace=. Note that thanks to Simpleclip, killing doesn't rewrite the system clipboard. Kill one word by =Alt-Backspace=. Also, kill forward word with =Alt-Shift-Backspace=, since =Alt-Backspace= is kill word backwards.
 (global-set-key (kbd "s-<backspace>") 'kill-whole-line)
-(global-set-key (kbd "s-<delete>") 'kill-whole-line)
 (global-set-key (kbd "M-S-<backspace>") 'kill-word)
 (global-set-key (kbd "M-<delete>") 'kill-word)
 (bind-key* "S-<delete>" 'kill-word)
@@ -86,11 +85,13 @@ Move more quickly
 ;; Crux
 (global-set-key (kbd "C-d") #'crux-duplicate-current-line-or-region)
 (global-set-key (kbd "C-c D") #'crux-delete-file-and-buffer)
-
-;; Comment
-(global-set-key (kbd "C-;") #'comment-or-uncomment-line-or-region)
 (global-set-key [remap kill-whole-line] #'crux-kill-whole-line)
 (global-set-key (kbd "s-r") #'crux-recentf-find-file)
 (global-set-key [(shift return)] #'crux-smart-open-line)
+;; Comment
+(global-set-key (kbd "C-;") #'comment-or-uncomment-line-or-region)
+
+;; Custom Handy Functions mapping
+(global-set-key (kbd "s-/") #'xah-select-text-in-quote)
 
 (provide 'key-bindings.module)

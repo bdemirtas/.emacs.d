@@ -102,4 +102,67 @@
   (global-set-key (kbd "s-D") 'mc/mark-all-dwim)
   (define-key mc/keymap (kbd "<return>") nil))
 
+;; Source: http://www.emacswiki.org/emacs-en/download/misc-cmds.el
+(defun revert-buffer-no-confirm ()
+    "Revert buffer without confirmation."
+    (interactive)
+    (revert-buffer :ignore-auto :noconfirm))
+
+
+
+(defun smarter-move-beginning-of-line (arg)
+  "Move point back to indentation of beginning of line.
+
+Move point to the first non-whitespace character on this line.
+If point is already there, move to the beginning of the line.
+Effectively toggle between the first non-whitespace character and
+the beginning of the line.
+
+If ARG is not nil or 1, move forward ARG - 1 lines first.  If
+point reaches the beginning or end of the buffer, stop there."
+  (interactive "^p")
+  (setq arg (or arg 1))
+
+  ;; Move lines first
+  (when (/= arg 1)
+    (let ((line-move-visual nil))
+      (forward-line (1- arg))))
+
+  (let ((orig-point (point)))
+    (back-to-indentation)
+    (when (= orig-point (point))
+      (move-beginning-of-line 1))))
+
+;; https://emacsredux.com/blog/2013/05/22/smarter-navigation-to-the-beginning-of-a-line/
+;; remap C-a to `smarter-move-beginning-of-line'
+(global-set-key [remap move-beginning-of-line]
+                'smarter-move-beginning-of-line)
+
+
+
+(defun my/query-replace (from-string to-string &optional delimited start end)
+  "Replace some occurrences of FROM-STRING with TO-STRING.  As each match is
+found, the user must type a character saying what to do with it. This is a
+modified version of the standard `query-replace' function in `replace.el',
+This modified version defaults to operating on the entire buffer instead of
+working only from POINT to the end of the buffer. For more information, see
+the documentation of `query-replace'"
+  (interactive
+   (let ((common
+      (query-replace-read-args
+       (concat "Query replace"
+           (if current-prefix-arg " word" "")
+           (if (and transient-mark-mode mark-active) " in region" ""))
+       nil)))
+     (list (nth 0 common) (nth 1 common) (nth 2 common)
+       (if (and transient-mark-mode mark-active)
+           (region-beginning)
+         (buffer-end -1))
+       (if (and transient-mark-mode mark-active)
+           (region-end)
+         (buffer-end 1)))))
+  (perform-replace from-string to-string t nil delimited nil nil start end))
+;; Replace the default key mapping
+(define-key esc-map "%" 'my/query-replace)
+
 (provide 'buffer.module)
