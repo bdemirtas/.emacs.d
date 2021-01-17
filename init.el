@@ -91,10 +91,11 @@
   (auto-compile-on-load-mode))
 
 
-(require 'core.module)
+(require 'web.module)
 (require 'python.module)
 (require 'key-bindings.module)
 (require 'utils.module)
 (require 'org.module)
 (require 'sx.module)
 (require 'handy-functions)
+(require 'core.module)

@@ -29,6 +29,13 @@
   :bind (("C-h b" . helm-descbinds)
          ("C-h w" . helm-descbinds)))
 
+(use-package helm-company
+  :ensure t
+  :config
+  (progn
+    (define-key company-mode-map (kbd "C-.") 'helm-company)
+    (define-key company-active-map (kbd "C-.") 'helm-company)))
+
 ;; Turn on auto-composition mode for helm
 ;; When used from Lisp, using `nil' will turn _on_ the mode
 (add-hook 'helm-major-mode-hook

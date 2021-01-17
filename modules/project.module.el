@@ -6,7 +6,6 @@
   :functions projectile-project-name projectile-mode
   :config
   (projectile-mode)
-  (helm-projectile-on)
   (add-to-list 'projectile-globally-ignored-directories "elpa")
   (add-to-list 'projectile-globally-ignored-directories ".cache")
   (add-to-list 'projectile-globally-ignored-directories "node_modules")
@@ -18,8 +17,6 @@
    projectile-mode-line-function #'(lambda () (format " [%s]" (projectile-project-name)))
    projectile-enable-caching t
    projectile-file-exists-remote-cache-expire nil)
-  (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
-  :bind (:map projectile-command-map
-              ("s s" . helm-projectile-ag)))
+  (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map))
 
 (provide 'project.module)

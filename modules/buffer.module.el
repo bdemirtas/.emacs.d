@@ -45,7 +45,7 @@
   (interactive)
   (revert-buffer nil t t)
   (message (concat "Reverted buffer " (buffer-name))))
-(global-set-key [f6] 'revert-this-buffer)
+(global-set-key (kbd "s-r") 'revert-this-buffer)
 
 ;; http://www.emacswiki.org/emacs/FlySpell
 ;; Printing messages for every word (when checking the entire buffer) causes an enormous slowdown.
@@ -107,8 +107,6 @@
     "Revert buffer without confirmation."
     (interactive)
     (revert-buffer :ignore-auto :noconfirm))
-
-
 
 (defun smarter-move-beginning-of-line (arg)
   "Move point back to indentation of beginning of line.

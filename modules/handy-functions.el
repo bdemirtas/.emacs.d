@@ -1,4 +1,14 @@
 (use-package crux)
+(use-package uuidgen)
+
+(defun my/uuidgen-4 (arg)
+  "Return an UUID from random numbers (UUIDv4).
+ If ARG is non nil then use CID format."
+  (interactive "P")
+  (let ((uuid (uuidgen-4)))
+    (if arg
+        (insert-uuid-cid uuid)
+      (insert uuid))))
 
 (defun comment-or-uncomment-line-or-region ()
   "Comments or uncomments the current line or region."

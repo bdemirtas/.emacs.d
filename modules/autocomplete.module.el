@@ -11,13 +11,6 @@
        company-tooltip-flip-when-above t)
  (global-company-mode t))
 
-(use-package helm-company
-  :ensure t
-  :config
-  (progn
-    (define-key company-mode-map (kbd "C-.") 'helm-company)
-    (define-key company-active-map (kbd "C-.") 'helm-company)))
-
 (use-package company-box
   :defer t
   :hook (company-mode . company-box-mode)
@@ -27,6 +20,11 @@
         company-box-max-candidates 50
         company-box-enable-icon nil
         company-box-doc-delay 0.5))
+
+(use-package company-restclient
+  :ensure t
+  :config
+  (add-to-list 'company-backends 'company-restclient))
 
 (use-package company-posframe
   :after (company posframe)

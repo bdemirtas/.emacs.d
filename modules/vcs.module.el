@@ -8,6 +8,8 @@
          (git-commit-mode . flyspell-mode))
   :bind (("C-x m" . magit-status)))
 
+(use-package magit-popup :ensure t)
+
 (use-package gitignore-mode
   :ensure t)
 

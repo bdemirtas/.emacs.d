@@ -35,4 +35,10 @@
   :after (anaconda-mode company)
   :config (add-to-list 'company-backends 'company-anaconda))
 
+
+  (use-package python-pytest
+    :after anaconda-mode
+    :ensure t
+    :bind (:map python-mode-map ("C-c t" . python-pytest-dispatch)))
+
 (provide 'python.module)

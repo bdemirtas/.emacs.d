@@ -86,12 +86,12 @@
 (global-set-key (kbd "C-d") #'crux-duplicate-current-line-or-region)
 (global-set-key (kbd "C-c D") #'crux-delete-file-and-buffer)
 (global-set-key [remap kill-whole-line] #'crux-kill-whole-line)
-(global-set-key (kbd "s-r") #'crux-recentf-find-file)
 (global-set-key [(shift return)] #'crux-smart-open-line)
 ;; Comment
 (global-set-key (kbd "C-;") #'comment-or-uncomment-line-or-region)
 
 ;; Custom Handy Functions mapping
 (global-set-key (kbd "s-/") #'xah-select-text-in-quote)
+(global-set-key (kbd "C-c f") #'counsel-recentf)
 
 (provide 'key-bindings.module)
