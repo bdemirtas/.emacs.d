@@ -7,6 +7,13 @@
 (require 'project.module)
 (require 'parens.module)
 
+(use-package eshell-toggle
+  :ensure t
+  :defer t
+  :commands (eshell-toggle)
+  :bind ("s-+" . eshell-toggle)
+  :custom (eshell-toggle-use-projectile-root nil))
+
 (use-package yasnippet
   :ensure t
   :functions yas-reload-all
@@ -30,6 +37,9 @@
   ("C-h v" . helpful-variable)
   ("C-h o" . helpful-symbol))
 
+(use-package dotenv-mode
+  :config
+  (add-to-list 'auto-mode-alist '("\\.env\\..*\\'" . dotenv-mode)))
 
 (require 'vcs.module)
 (require 'sql.module)

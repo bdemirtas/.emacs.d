@@ -50,6 +50,11 @@
   (setq ivy-posframe-display-functions-alist '((t . ivy-posframe-display-at-frame-top-center)))
   (ivy-posframe-mode 1))
 
+;; Jump to things in Emacs tree-style
+(use-package avy
+  :ensure t
+  :bind(("C-:" . avy-goto-word-1)))
+
 (use-package ivy :ensure t
   :diminish (ivy-mode . "")             ; does not display ivy in the modeline
   :init
