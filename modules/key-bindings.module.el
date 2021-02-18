@@ -2,6 +2,8 @@
 ;;(global-set-key (kbd "C-<right>") 'forward-word)
 ;;(global-set-key (kbd "C-<left>") 'backward-word)
 
+(global-set-key (kbd "C-c d") 'make-directory)
+
 ;; Emacs control is Ctrl. Emacs Super is Command. Emacs Meta is Alt. Right Alt (option) can be used to enter symbols like em dashes =—=.
 (when (is-macos)
   (setq
@@ -71,8 +73,8 @@
 (use-package undo-fu)
 (global-unset-key (kbd "C-z"))
 (global-set-key (kbd "C-z")   'undo-fu-only-undo)
-(global-set-key (kbd "C-S-z") 'undo-fu-only-redo)
 (global-set-key (kbd "s-z")   'undo-fu-only-undo)
+(global-set-key (kbd "C-S-z") 'undo-fu-only-redo)
 (global-set-key (kbd "s-r")   'undo-fu-only-redo)
 
 ;; Upcase word and region using the same keys.

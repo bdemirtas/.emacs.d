@@ -1,0 +1,176 @@
+\documentclass[10pt,landscape]{article}
+\usepackage{multicol}
+\usepackage{ifthen}
+\usepackage[landscape]{geometry}
+
+% To Do:
+% \listoffigures \listoftables
+% \setcounter{secnumdepth}{0}
+
+
+% This sets page margins to .5 inch if using letter paper, and to 1cm
+% if using A4 paper. (This probably isn't strictly necessary.)
+% If using another size paper, use default 1cm margins.
+\ifthenelse{\lengthtest { \paperwidth = 11in}}
+	{ \geometry{top=.5in,left=.5in,right=.5in,bottom=.5in} }
+	{\ifthenelse{ \lengthtest{ \paperwidth = 297mm}}
+		{\geometry{top=1cm,left=1cm,right=1cm,bottom=1cm} }
+		{\geometry{top=1cm,left=1cm,right=1cm,bottom=1cm} }
+	}
+
+% Turn off header and footer
+\pagestyle{empty}
+
+
+% Redefine section commands to use less space
+\makeatletter
+\renewcommand{\section}{\@startsection{section}{1}{0mm}%
+                                {-1ex plus -.5ex minus -.2ex}%
+                                {0.5ex plus .2ex}%x
+                                {\normalfont\large\bfseries}}
+\renewcommand{\subsection}{\@startsection{subsection}{2}{0mm}%
+                                {-1explus -.5ex minus -.2ex}%
+                                {0.5ex plus .2ex}%
+                                {\normalfont\normalsize\bfseries}}
+\renewcommand{\subsubsection}{\@startsection{subsubsection}{3}{0mm}%
+                                {-1ex plus -.5ex minus -.2ex}%
+                                {1ex plus .2ex}%
+                                {\normalfont\small\bfseries}}
+\makeatother
+
+% Define BibTeX command
+\def\BibTeX{{\rm B\kern-.05em{\sc i\kern-.025em b}\kern-.08em
+    T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
+
+% Don't print section numbers
+\setcounter{secnumdepth}{0}
+
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0pt plus 0.5ex}
+
+
+% -----------------------------------------------------------------------
+
+\begin{document}
+
+\raggedright
+\footnotesize
+\begin{multicols}{3}
+
+
+% multicol parameters
+% These lengths are set only within the two main columns
+%\setlength{\columnseprule}{0.25pt}
+\setlength{\premulticols}{1pt}
+\setlength{\postmulticols}{1pt}
+\setlength{\multicolsep}{1pt}
+\setlength{\columnsep}{2pt}
+
+% \begin{center}
+%      \Large{{Burak EmacsCheat Sheet}} \\
+% \end{center}
+
+\section{Buffer}
+\begin{tabular}{@{}ll@{}}
+\verb!C-d!    & Duplicate current line \\
+\verb!C-c D!    & Delete current line \\
+\verb!C-;!    & Comment or Uncomment or Region \\
+\verb!s-/!    & Select text in quote \\
+\verb!C-S-n!    & Move next by 5 lines \\
+\verb!C-S-p!    & Move previous by 5 lines \\
+\verb!C-S-f!    & Move forward by 5 char \\
+\verb!C-S-b!    & Move backward by 5 char \\
+\verb!s-c!      & copy to clipboard \\
+\verb!s-v!      & paste from clipboard \\
+\verb!s-x!      & cut to clipboard \\
+\verb!s-backspace!      & Kill whole line \\
+\verb!M-S-backspace!    & Kill word \\
+\verb!M-delete!          & Kill word \\
+\verb!s-<left>!      & Beginning of visual line \\
+\verb!s-<right>!     & End of visual line \\
+\verb!s-<up>!        & Beginning of buffer \\
+\verb!s-<down>!      & End of visual line \\
+\verb!C-z!      & Undo \\
+\verb!s-z!      & Undo \\
+\verb!C-S-z!    & Redo \\
+\verb!s-r!      & Redo \\
+\verb!s-r!      & Redo
+\end{tabular}
+
+\section{Git}
+\begin{tabular}{@{}ll@{}}
+\verb!C-x g s!    & Magit status \\
+\verb!C-x g b!    & Magit blame \\
+\verb!C-x g l!    & Magit log
+\end{tabular}
+
+\section{Python}
+\begin{tabular}{@{}ll@{}}
+\verb!C-c =!    & Black format current buffer \\
+\verb!s-.!    & Anaconda find definitions \\
+\verb!s-,!    & Anaconda go back \\
+\verb!all!    & all \\
+\verb!if main starting file!    & ifmain \\
+\verb!decorator!    & dec \\
+\verb!init constructor!    & init \\
+\verb!function creation!    & f \\
+\verb!pdb trace!    & pdb \\
+\verb!comprehensive list!    & li \\
+\verb!main definition!    & main \\
+\verb!try exception!    & try \\
+\verb!new class!    & cls \\
+\verb!dataclass!    & dc \\
+\verb!method!    & m
+\end{tabular}
+
+\section{Ivy}
+\begin{tabular}{@{}ll@{}}
+\verb!C-x b!    & Counsel buffer \\
+\verb!C-x C-f!  & Counsel find file \\
+\verb!C-c a!    & Counsel silver search \\
+\verb!C-c g!    & Counsel search in git repo \\
+\verb!C-c j!    & Counsel file jump \\
+\verb!C-c l!    & Counsel locate \\
+\verb!C-:!      & Avy go to word 1 \\
+\verb!C-s!      & Swiper \\
+\verb!C-r!      & Swiper
+\end{tabular}
+
+\section{Projectile}
+\begin{tabular}{@{}ll@{}}
+\verb!C-c p p!    & Switch Project \\
+\verb!C-c p f!    & Find file \\
+\verb!C-c p d!    & Find directory \\
+\verb!C-c p k!    & Kill project buffers  \\
+\verb!C-c p S!    & Save project buffers \\
+\verb!C-c x e!    & Run eshell
+\end{tabular}
+
+\section{Web}
+\begin{tabular}{@{}ll@{}}
+\verb!C-c C-s!    & Counsel jq \\
+\verb!C-c C-j!    & Json reformat region \\
+\verb!C-c C-f!    & Json pretty print
+\end{tabular}
+
+\section{Stack Exchange}
+\begin{tabular}{@{}ll@{}}
+\verb!C-c s!    & Stack Exchange \\
+\verb!q!    & Tab all questions  \\
+\verb!i!    & Inbox \\
+\verb!o!    & Open link \\
+\verb!u!    & Tab unanswered my tags \\
+\verb!a!    & ask  \\
+\verb!s!    & search
+\end{tabular}
+
+
+\rule{0.3\linewidth}{0.25pt}
+\scriptsize
+
+Copyright \copyright\ 2021 Burak Demirtas
+
+
+\end{multicols}
+\end{document}

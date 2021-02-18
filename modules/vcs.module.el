@@ -70,4 +70,8 @@ _p_rev       _u_pper              _=_: upper/lower       _r_esolve
   (global-diff-hl-mode)
   (add-hook 'magit-post-refresh-hook #'diff-hl-magit-post-refresh))
 
+(use-package git-timemachine
+  :bind (:map prog-prefix-map
+              ("T" . git-timemachine)))
+
 (provide 'vcs.module)

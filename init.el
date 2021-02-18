@@ -39,22 +39,6 @@
 (tool-bar-mode -1)
 (scroll-bar-mode -1)
 
-;; Never use tabs, use spaces instead.
-(setq-default
- indent-tabs-mode nil
- tab-width 4)
-
-(setq
- tab-width 2
- js-indent-level 2
- css-indent-offset 2
- python-indent-offset 4)
-
-;; always full screen
-(add-to-list 'initial-frame-alist '(fullscreen . maximized))
-(add-to-list 'default-frame-alist '(fullscreen . fullheight))
-
-
 ;; I don't care about auto save and backup files.
 (setq
  make-backup-files nil  ; stop creating backup~ files
@@ -93,6 +77,7 @@
 
 (require 'web.module)
 (require 'python.module)
+(require 'java.module)
 (require 'key-bindings.module)
 (require 'utils.module)
 (require 'org.module)

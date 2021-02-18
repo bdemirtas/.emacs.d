@@ -7,7 +7,7 @@
          ("C-c j" . counsel-file-jump)
          ("C-c l" . counsel-locate)
          :map minibuffer-local-map
-         ("C-r" . 'counsel-minibuffer-history))
+         ("C-h" . 'counsel-minibuffer-history))
   :config
   (setq ivy-initial-inputs-alist nil)) ;; Don't start searches with ^ !
 
@@ -25,10 +25,6 @@
   :after (counsel projectile)
   :config
   (counsel-projectile-mode 1))
-
-(use-package counsel-jq
-  :after json-mode
-  :bind (:map json-mode-map ("C-c C-s" . counsel-jq)))
 
 (use-package ivy-posframe
   :ensure t
@@ -82,14 +78,10 @@
 
 
 (use-package ivy-rich
-  :after ivy
-  :custom
-  (ivy-virtual-abbreviate 'full
-                          ivy-rich-switch-buffer-align-virtual-buffer t
-                          ivy-rich-path-style 'abbrev)
-  :config
-  (ivy-set-display-transformer 'ivy-switch-buffer
-                               'ivy-rich-switch-buffer-transformer))
+  :after counsel
+  :init (setq ivy-rich-path-style 'abbrev
+              ivy-virtual-abbreviate 'full)
+  :config (ivy-rich-mode))
 
 (use-package ivy-hydra)
 

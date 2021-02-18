@@ -14,13 +14,28 @@
 ;; Ask for 'y or n'
 (fset 'yes-or-no-p 'y-or-n-p)
 
+;; Never use tabs, use spaces instead.
+(setq-default
+ indent-tabs-mode nil
+ tab-width 4)
+
+(setq
+ tab-width 2
+ js-indent-level 2
+ css-indent-offset 2
+ python-indent-offset 4)
+
+;; always full screen
+(add-to-list 'initial-frame-alist '(fullscreen . maximized))
+(add-to-list 'default-frame-alist '(fullscreen . fullheight))
+
 (use-package dash :ensure t)
 
 (use-package diminish :ensure t)
 
-(use-package cyberpunk-theme
+(use-package alect-themes
   :defer t
-  :init (load-theme 'cyberpunk t))
+  :init (load-theme 'alect-black t))
 
 (use-package auto-compile
   :ensure t
