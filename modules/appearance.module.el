@@ -1,6 +1,8 @@
 (global-font-lock-mode t)
 (set-default 'show-trailing-whitespace t)
 (global-set-key (kbd "C-c w") 'whitespace-mode)
+;; Change font
+(set-frame-font "Roboto Mono" nil t)
 ;; fill-column influences how Emacs justifies paragraphs
 (setq-default fill-column 79)
 ;; show both line and column number by default

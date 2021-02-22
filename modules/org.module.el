@@ -7,6 +7,10 @@
   :config
   (add-hook 'org-mode-hook #'visual-line-mode))
 
+(use-package org-sidebar
+  :ensure t
+  :after org)
+
 (use-package org-bullets
   :after org
   :hook (org-mode . org-bullets-mode))

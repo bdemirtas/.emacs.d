@@ -12,7 +12,7 @@
  (global-company-mode t))
 
 (use-package company-box
-  :defer t
+  :ensure t
   :hook (company-mode . company-box-mode)
   :config
   (setq company-box-backends-colors nil
@@ -27,6 +27,7 @@
   (add-to-list 'company-backends 'company-restclient))
 
 (use-package company-posframe
+  :ensure t
   :after (company posframe)
   :init (company-posframe-mode 1))
 

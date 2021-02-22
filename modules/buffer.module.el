@@ -12,6 +12,8 @@
 (when (display-graphic-p)
   (setq x-select-request-type '(UTF8_STRING COMPOUND_TEXT TEXT STRING)))
 
+(use-package undo-fu)
+
 (use-package smartscan
   :ensure t
   :config

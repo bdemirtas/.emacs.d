@@ -5,6 +5,13 @@
 (defun is-macos ()
   "Return true if system is darwin-based (Mac OS X)"
   (string-equal system-type "darwin"))
+  (setenv "PATH" (concat (getenv "PATH") ":/usr/local/bin"))
+  (setenv "PATH" (concat (getenv "PATH") ":/Library/TeX/texbin/"))
+  (setq exec-path (append exec-path '("/usr/local/bin")))
+  (add-to-list 'exec-path "/usr/local/bin/")
+  (add-to-list 'exec-path "/usr/bin/")
+  (add-to-list 'exec-path "/Library/TeX/texbin/")
+
 
 (unless (assoc-default "melpa" package-archives)
   (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t))
@@ -27,14 +34,6 @@
 (use-package auto-compile
   :config (auto-compile-on-load-mode))
 (setq load-prefer-newer t)
-
-
-(setenv "PATH" (concat (getenv "PATH") ":/usr/local/bin"))
-(setenv "PATH" (concat (getenv "PATH") ":/Library/TeX/texbin/"))
-(setq exec-path (append exec-path '("/usr/local/bin")))
-(add-to-list 'exec-path "/usr/local/bin/")
-(add-to-list 'exec-path "/usr/bin/")
-(add-to-list 'exec-path "/Library/TeX/texbin/")
 
 (tool-bar-mode -1)
 (scroll-bar-mode -1)
@@ -83,4 +82,5 @@
 (require 'org.module)
 (require 'sx.module)
 (require 'handy-functions)
+(require 'tree)
 (require 'core.module)

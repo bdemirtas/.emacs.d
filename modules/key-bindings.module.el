@@ -2,7 +2,7 @@
 ;;(global-set-key (kbd "C-<right>") 'forward-word)
 ;;(global-set-key (kbd "C-<left>") 'backward-word)
 
-(global-set-key (kbd "C-c d") 'make-directory)
+(global-set-key (kbd "C-c c") 'Make-directory)
 
 ;; Emacs control is Ctrl. Emacs Super is Command. Emacs Meta is Alt. Right Alt (option) can be used to enter symbols like em dashes =—=.
 (when (is-macos)
@@ -70,7 +70,6 @@
 (global-set-key (kbd "s-q") 'save-buffers-kill-emacs) ;; quit
 
 ;; Regular undo-redo.
-(use-package undo-fu)
 (global-unset-key (kbd "C-z"))
 (global-set-key (kbd "C-z")   'undo-fu-only-undo)
 (global-set-key (kbd "s-z")   'undo-fu-only-undo)
@@ -95,5 +94,11 @@
 ;; Custom Handy Functions mapping
 (global-set-key (kbd "s-/") #'xah-select-text-in-quote)
 (global-set-key (kbd "C-c f") #'counsel-recentf)
+
+;; Make windmove work in Org mode:
+(add-hook 'org-shiftup-final-hook 'windmove-up)
+(add-hook 'org-shiftleft-final-hook 'windmove-left)
+(add-hook 'org-shiftdown-final-hook 'windmove-down)
+(add-hook 'org-shiftright-final-hook 'windmove-right)
 
 (provide 'key-bindings.module)
