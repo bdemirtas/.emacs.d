@@ -2,7 +2,7 @@
 ;;(global-set-key (kbd "C-<right>") 'forward-word)
 ;;(global-set-key (kbd "C-<left>") 'backward-word)
 
-(global-set-key (kbd "C-c c") 'Make-directory)
+(global-set-key (kbd "C-c c") 'make-directory)
 
 ;; Emacs control is Ctrl. Emacs Super is Command. Emacs Meta is Alt. Right Alt (option) can be used to enter symbols like em dashes =—=.
 (when (is-macos)

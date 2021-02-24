@@ -5,6 +5,10 @@
   (org-log-done t)
   (org-startup-indented t)
   :config
+    (setq org-todo-keywords
+    '((sequence "TODO(t)" "NEXT(n)" "|" "DONE(d!)")
+      (sequence "BACKLOG(b)" "PLAN(p)" "READY(r)" "ACTIVE(a)" "REVIEW(v)" "WAIT(w@/!)" "HOLD(h)" "|" "COMPLETED(c)" "CANC(k@)")))
+
   (add-hook 'org-mode-hook #'visual-line-mode))
 
 (use-package org-sidebar

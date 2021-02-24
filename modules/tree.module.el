@@ -83,4 +83,4 @@
   :after (treemacs magit)
   :ensure t)
 
-(provide 'tree)
+(provide 'tree.module)

@@ -31,13 +31,19 @@
 (add-to-list 'initial-frame-alist '(fullscreen . maximized))
 (add-to-list 'default-frame-alist '(fullscreen . fullheight))
 
+(use-package all-the-icons)
+
+(use-package doom-modeline
+  :init (doom-modeline-mode 1)
+  :custom ((doom-modeline-height 15)))
+
 (use-package dash :ensure t)
 
 (use-package diminish :ensure t)
 
-(use-package alect-themes
+(use-package doom-themes
   :defer t
-  :init (load-theme 'alect-black t))
+  :init (load-theme 'doom-dracula t))
 
 (use-package auto-compile
   :ensure t

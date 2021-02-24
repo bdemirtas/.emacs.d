@@ -26,25 +26,26 @@
   :config
   (counsel-projectile-mode 1))
 
-(use-package ivy-posframe
-  :ensure t
-  :config
-  (setq ivy-posframe-parameters
-        `((min-width . 100)
-          (min-height . ,ivy-height)
-          (left-fringe . 1)
-          (right-fringe . 1)
-          (internal-border-width . 10))
-        ivy-display-functions-alist
-        '((counsel-git-grep)
-          (counsel-rg)
-          (counsel-projectile)
-          (swiper)
-          (counsel-irony . ivy-display-function-overlay)
-          (ivy-completion-in-region . ivy-display-function-overlay)
-          (t . ivy-posframe-display-at-frame-top-center)))
-  (setq ivy-posframe-display-functions-alist '((t . ivy-posframe-display-at-frame-top-center)))
-  (ivy-posframe-mode 1))
+;; Disable for now ivy-postframe, I'm having some kind of trouble to make it work properly
+;; (use-package ivy-posframe
+;;   :ensure t
+;;   :config
+;;   (setq ivy-posframe-parameters
+;;         `((min-width . 100)
+;;           (min-height . ,ivy-height)
+;;           (left-fringe . 1)
+;;           (right-fringe . 1)
+;;           (internal-border-width . 10))
+;;         ivy-display-functions-alist
+;;         '((counsel-git-grep)
+;;           (counsel-rg)
+;;           (counsel-projectile)
+;;           (swiper)
+;;           (counsel-irony . ivy-display-function-overlay)
+;;           (ivy-completion-in-region . ivy-display-function-overlay)
+;;           (t . ivy-posframe-display-at-frame-top-center)))
+;;   (setq ivy-posframe-display-functions-alist '((t . ivy-posframe-display-at-frame-top-center)))
+;;   (ivy-posframe-mode 1))
 
 ;; Jump to things in Emacs tree-style
 (use-package avy
@@ -70,10 +71,6 @@
   (setq ivy-count-format "(%d/%d) ")     ; count format, from the ivy help page
   (setq ivy-display-style 'fancy)
   (setq ivy-format-function 'ivy-format-function-line) ; Make highlight extend all the way to the right
-  ;; TODO testing out the fuzzy search
-  (setq ivy-re-builders-alist
-      '((counsel-M-x . ivy--regex-fuzzy) ; Only counsel-M-x use flx fuzzy search
-        (t . ivy--regex-plus)))
   (setq ivy-initial-inputs-alist nil))
 
 

@@ -3,7 +3,6 @@
 
 ;; Check if system is Darwin/macOS
 (defun is-macos ()
-  "Return true if system is darwin-based (Mac OS X)"
   (string-equal system-type "darwin"))
   (setenv "PATH" (concat (getenv "PATH") ":/usr/local/bin"))
   (setenv "PATH" (concat (getenv "PATH") ":/Library/TeX/texbin/"))
@@ -74,13 +73,18 @@
   (auto-compile-on-load-mode))
 
 
-(require 'web.module)
 (require 'python.module)
+(require 'web.module)
 (require 'java.module)
-(require 'key-bindings.module)
+(require 'scala.module)
 (require 'utils.module)
 (require 'org.module)
 (require 'sx.module)
-(require 'handy-functions)
-(require 'tree)
+(require 'tree.module)
 (require 'core.module)
+(require 'handy-functions)
+(require 'key-bindings.module)
+
+(provide 'init)
+
+;;; init ends here
