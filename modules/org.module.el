@@ -11,6 +11,8 @@
 
   (add-hook 'org-mode-hook #'visual-line-mode))
 
+(use-package ox-twbs)
+
 (use-package org-sidebar
   :ensure t
   :after org)

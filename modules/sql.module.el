@@ -1,5 +1,12 @@
-;; database SQL client using Clojure JDBC
+;;; sql.module.el --- Database setup
 
+;;; Commentary:
+
+;;  Database configuration. This module contain config to connect to any database.
+
+;;; Code:
+
+;; database SQL client using Clojure JDBC
 (defvar pg-jdbc-driver
   "~/.m2/repository/postgresql/postgresql/9.3-1102.jdbc41/postgresql-9.3-1102.jdbc41.jar"
   "Location of postgres jdbc driver for ejc.")
@@ -30,3 +37,5 @@ ejc-sql-mode
 			 '(ejc-company-backend)))
 
 (provide 'sql.module)
+
+;;; sql.module.el ends here

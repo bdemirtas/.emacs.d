@@ -1,25 +1,48 @@
+;;; init.el --- Init setup
+;; Load manually, the melpa package doesn't contain restclient-jq
+
+;;; Commentary:
+
+;;  Init config. Only load package that needs to be loaded before all modules.
+
+;;; Code:
+
 (package-initialize)
 (setq use-package-always-ensure t)
 
-;; Check if system is Darwin/macOS
-(defun is-macos ()
-  (string-equal system-type "darwin"))
-  (setenv "PATH" (concat (getenv "PATH") ":/usr/local/bin"))
-  (setenv "PATH" (concat (getenv "PATH") ":/Library/TeX/texbin/"))
-  (setq exec-path (append exec-path '("/usr/local/bin")))
-  (add-to-list 'exec-path "/usr/local/bin/")
-  (add-to-list 'exec-path "/usr/bin/")
-  (add-to-list 'exec-path "/Library/TeX/texbin/")
+(defun is-mac-p ()
+  "If it's mac os."
+  (eq system-type 'darwin))
 
+(defun is-linux-p ()
+  "If it's GNU/Linux."
+  (eq system-type 'gnu/linux))
+
+(defun is-windows-p ()
+  "If it's based on Windows."
+  (or
+   (eq system-type 'ms-dos)
+   (eq system-type 'windows-nt)
+   (eq system-type 'cygwin)))
+
+(defun is-bsd-p ()
+  "If it's BSD."
+  (eq system-type 'gnu/kfreebsd))
+
+(when (is-mac-p)
+  (add-to-list 'exec-path "/usr/local/bin/")
+  (add-to-list 'exec-path "/usr/bin/"))
 
 (unless (assoc-default "melpa" package-archives)
   (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t))
 (unless (assoc-default "org" package-archives)
   (add-to-list 'package-archives '("org" . "https://orgmode.org/elpa/") t))
 
-
 (add-to-list 'load-path (concat user-emacs-directory "modules"))
+(add-to-list 'load-path (concat user-emacs-directory "lisp"))
 
+(require 'restclient)
+(require 'restclient-jq)
 ;; update packages list if we are on a new install
 (unless package-archive-contents
   (package-refresh-contents))
@@ -33,9 +56,6 @@
 (use-package auto-compile
   :config (auto-compile-on-load-mode))
 (setq load-prefer-newer t)
-
-(tool-bar-mode -1)
-(scroll-bar-mode -1)
 
 ;; I don't care about auto save and backup files.
 (setq
@@ -55,24 +75,18 @@
 (load custom-file)
 
 (use-package no-littering)
-
 (use-package delight
-  :ensure t
   :config
   (delight 'visual-line-mode))
-
-(use-package bind-key) ;; to use :bind
-
+(use-package bind-key)
 (use-package which-key
   :config
   (add-hook 'after-init-hook 'which-key-mode))
-
 (use-package auto-compile
-  :ensure t
   :config
   (auto-compile-on-load-mode))
 
-
+;; Loading modules
 (require 'python.module)
 (require 'web.module)
 (require 'java.module)

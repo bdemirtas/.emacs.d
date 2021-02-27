@@ -1,3 +1,11 @@
+;;; sx.module.el --- StackExchange setup
+
+;;; Commentary:
+
+;;  StackExchange configuration.
+
+;;; Code:
+
 (use-package sx
   :config
   (bind-keys :prefix "C-c s"
@@ -11,3 +19,5 @@
              ("s" . sx-search)))
 
 (provide 'sx.module)
+
+;;; sx.module.el ends here

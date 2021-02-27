@@ -1,5 +1,13 @@
+;;; java.module.el --- Java setup
+
+;;; Commentary:
+;;  Java-related config.  This module contain autocomplete features for Java.
+
+;;; Code:
+
 (use-package lsp-java
   :defer t
+  :after lsp-mode
   :init
   (add-hook 'java-mode-hook #'lsp))
 
@@ -8,18 +16,10 @@
   :config
   (add-hook 'meghanada-mode-hook #'flycheck-mode)
 )
-(use-package company-lsp
-  :after  company
-  :ensure t
-  :config
-  (setq company-lsp-cache-candidates t
-        company-lsp-async t))
 
-(use-package java-snippets
-  :ensure t)
+(use-package java-snippets)
 
 (use-package dap-mode
-  :ensure t
   :after lsp-mode
   :config
   (dap-mode t)
@@ -28,3 +28,5 @@
 (require 'dap-java)
 
 (provide 'java.module)
+
+;;; java.module.el ends here

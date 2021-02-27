@@ -1,3 +1,11 @@
+;;; project.module.el --- Projectile setup
+
+;;; Commentary:
+
+;;  Projectile configuration.
+
+;;; Code:
+
 (use-package projectile
   :init (setq projectile-enable-caching t)
   :custom
@@ -20,3 +28,5 @@
   (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map))
 
 (provide 'project.module)
+
+;;; project.module.el ends here

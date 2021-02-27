@@ -1,3 +1,11 @@
+;;; parens.module.el --- Parenthesis setup
+
+;;; Commentary:
+
+;;  Parenthesis configuration for a better handling.
+
+;;; Code:
+
 (use-package rainbow-delimiters
   :ensure t
   :config
@@ -21,3 +29,5 @@
   :delight smartparens-mode)
 
 (provide 'parens.module)
+
+;;; parens.module.el ends here

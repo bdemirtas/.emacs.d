@@ -1,3 +1,11 @@
+;;; vcs.module.el --- VCS setup
+
+;;; Commentary:
+
+;;  All vcs types and configuration is in this module.
+
+;;; Code:
+
 (use-package magit
   :ensure t
   :defines magit-last-seen-setup-instructions
@@ -75,3 +83,5 @@ _p_rev       _u_pper              _=_: upper/lower       _r_esolve
               ("T" . git-timemachine)))
 
 (provide 'vcs.module)
+
+;;; vcs.module.el ends here

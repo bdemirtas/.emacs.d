@@ -1,3 +1,11 @@
+;;; helm.module.el --- Helm Setup
+
+;;; Commentary:
+
+;;  Helm-related config.  This module contain all helm configration with extensions
+
+;;; Code:
+
 (use-package helm
   :delight
   :bind (("M-x" . helm-M-x)
@@ -43,3 +51,5 @@
             (setq auto-composition-mode nil)))
 
 (provide 'helm.module)
+
+;;; helm.module.el ends here

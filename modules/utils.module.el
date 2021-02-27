@@ -1,3 +1,45 @@
+;;; utils.module.el --- Various packages setup
+
+;;; Commentary:
+
+;;  Various packages config. Packages here aren't worth to be in a single module by itself.
+
+;;; Code:
+
+(use-package eshell-toggle
+  :ensure t
+  :defer t
+  :commands (eshell-toggle)
+  :bind ("s-+" . eshell-toggle)
+  :custom (eshell-toggle-use-projectile-root nil))
+
+(use-package yasnippet
+  :ensure t
+  :functions yas-reload-all
+  :config
+  (use-package yasnippet-snippets
+    :ensure t)
+  (yas-global-mode 1)
+  :delight yas-minor-mode)
+
+(use-package ivy-yasnippet
+  :bind ("C-c C-y" . ivy-yasnippet))
+
+(use-package flycheck
+  :ensure t)
+
+(use-package helpful
+  :ensure t
+  :bind
+  ("C-h f" . helpful-function)
+  ("C-h F" . helpful-command)
+  ("C-h v" . helpful-variable)
+  ("C-h o" . helpful-symbol))
+
+(use-package dotenv-mode
+  :config
+  (add-to-list 'auto-mode-alist '("\\.env\\..*\\'" . dotenv-mode)))
+
 ;; yaml-mode
 (use-package yaml-mode
   :mode ("\\.yml$" "\\.yaml$"))
@@ -22,3 +64,5 @@
 (global-set-key (kbd "C-x w") 'elfeed)
 
 (provide 'utils.module)
+
+;;; utils.module.el ends here

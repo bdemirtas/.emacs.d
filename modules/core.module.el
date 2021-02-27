@@ -1,4 +1,10 @@
-(setq inhibit-startup-screen t)
+;;; core.module.el --- Loading my configuration core modules
+
+;;; Commentary:
+
+;;  Modules here are the core one one and can't be removed. Optional module are loading in init.
+
+;;; Code:
 
 (require 'appearance.module)
 (require 'buffer.module)
@@ -6,42 +12,9 @@
 (require 'ivy.module)
 (require 'project.module)
 (require 'parens.module)
-
-(use-package eshell-toggle
-  :ensure t
-  :defer t
-  :commands (eshell-toggle)
-  :bind ("s-+" . eshell-toggle)
-  :custom (eshell-toggle-use-projectile-root nil))
-
-(use-package yasnippet
-  :ensure t
-  :functions yas-reload-all
-  :config
-  (use-package yasnippet-snippets
-    :ensure t)
-  (yas-global-mode 1)
-  :delight yas-minor-mode)
-
-(use-package ivy-yasnippet
-  :bind ("C-c C-y" . ivy-yasnippet))
-
-(use-package flycheck
-  :ensure t)
-
-(use-package helpful
-  :ensure t
-  :bind
-  ("C-h f" . helpful-function)
-  ("C-h F" . helpful-command)
-  ("C-h v" . helpful-variable)
-  ("C-h o" . helpful-symbol))
-
-(use-package dotenv-mode
-  :config
-  (add-to-list 'auto-mode-alist '("\\.env\\..*\\'" . dotenv-mode)))
-
 (require 'vcs.module)
 (require 'sql.module)
 
 (provide 'core.module)
+
+;;; core.module.el ends here

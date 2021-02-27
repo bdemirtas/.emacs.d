@@ -1,3 +1,11 @@
+;;; web.module.el --- Web development setup
+
+;;; Commentary:
+
+;;  Everything related to develeping a website configuration.
+
+;;; Code:
+
 (use-package web-mode
   :config
   (add-to-list 'auto-mode-alist '("\\.erb\\'" . web-mode))
@@ -7,7 +15,7 @@
   (add-to-list 'auto-mode-alist '("\\.js\\'" . web-mode))
   (add-to-list 'auto-mode-alist '("\\.css\\'" . web-mode)))
 
-(use-package jq-mode :ensure t)
+(use-package jq-mode)
 
 (use-package counsel-jq
   :after json-mode
@@ -25,14 +33,9 @@
               (("C-c C-f" . json-pretty-print)
                ("C-c C-d" . nil))))
 
-;; REST
-(use-package restclient
-  :ensure t
-  :mode
-  ("\\.http\\'" . restclient-mode))
-
 (use-package restclient-test
   :ensure t
+  :after restclient
   :hook
   (restclient-mode-hook . restclient-test-mode))
 
@@ -46,6 +49,9 @@
 
 (use-package company-restclient
   :config
+  :after restclient company
   (add-to-list 'company-backends 'company-restclient))
 
 (provide 'web.module)
+
+;;; web.module.el ends here

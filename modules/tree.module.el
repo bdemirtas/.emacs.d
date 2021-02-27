@@ -1,3 +1,11 @@
+;;; tree.module.el --- Treemacs setup
+
+;;; Commentary:
+
+;;  Treemacs basic configuration. This is a copy paste from the documentation.
+
+;;; Code:
+
 (use-package treemacs
   :ensure t
   :defer t
@@ -84,3 +92,5 @@
   :ensure t)
 
 (provide 'tree.module)
+
+;;; tree.module.el ends here

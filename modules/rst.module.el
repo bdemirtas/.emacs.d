@@ -1,3 +1,11 @@
+;;; rst.module.el --- RST setup
+
+;;; Commentary:
+
+;;  RST format is the most have with markdown format.
+
+;;; Code:
+
 (use-package rst
   :functions sp--rst-skip-asterisk
   :init
@@ -21,3 +29,5 @@
     (sp-local-pair "_" "_" :wrap "M-_" :unless '(sp-point-after-word-p))))
 
 (provide 'rst.module)
+
+;;; rst.module.el ends here

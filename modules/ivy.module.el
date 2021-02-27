@@ -1,3 +1,12 @@
+;;; ivy.module.el --- Ivy is a powerful alternative to the popular helm
+
+;;; Commentary:
+
+;; Ivy-related config.  This module contain Ivy configuration and related package.
+;; like counsel and avy
+
+;;; Code:
+
 (use-package counsel
   :bind (("M-x" . counsel-M-x)
          ("C-x b" . counsel-ibuffer)
@@ -11,13 +20,6 @@
   :config
   (setq ivy-initial-inputs-alist nil)) ;; Don't start searches with ^ !
 
- ;; Use spotlight on macOS.
-  (when (eq system-type 'darwin)
-    (setq counsel-locate-cmd #'counsel-locate-cmd-mdfind))
-
-(setq max-specpdl-size 1300000)
-(setq max-lisp-eval-depth 100000)
-
 (use-package counsel-ag-popup
   :after (counsel))
 
@@ -26,31 +28,19 @@
   :config
   (counsel-projectile-mode 1))
 
-;; Disable for now ivy-postframe, I'm having some kind of trouble to make it work properly
-;; (use-package ivy-posframe
-;;   :ensure t
-;;   :config
-;;   (setq ivy-posframe-parameters
-;;         `((min-width . 100)
-;;           (min-height . ,ivy-height)
-;;           (left-fringe . 1)
-;;           (right-fringe . 1)
-;;           (internal-border-width . 10))
-;;         ivy-display-functions-alist
-;;         '((counsel-git-grep)
-;;           (counsel-rg)
-;;           (counsel-projectile)
-;;           (swiper)
-;;           (counsel-irony . ivy-display-function-overlay)
-;;           (ivy-completion-in-region . ivy-display-function-overlay)
-;;           (t . ivy-posframe-display-at-frame-top-center)))
-;;   (setq ivy-posframe-display-functions-alist '((t . ivy-posframe-display-at-frame-top-center)))
-;;   (ivy-posframe-mode 1))
+(use-package ivy-posframe
+  :ensure t
+  :config
+  (setq ivy-posframe-display-functions-alist '((t . ivy-posframe-display-at-frame-top-center)))
+  (ivy-posframe-mode 1))
 
 ;; Jump to things in Emacs tree-style
 (use-package avy
   :ensure t
-  :bind(("C-:" . avy-goto-word-1)))
+  :bind(("C-:" . avy-goto-word-1)
+        :map isearch-mode-map
+              ("C-'" . avy-isearch)))
+
 
 (use-package ivy :ensure t
   :diminish (ivy-mode . "")             ; does not display ivy in the modeline
@@ -73,18 +63,12 @@
   (setq ivy-format-function 'ivy-format-function-line) ; Make highlight extend all the way to the right
   (setq ivy-initial-inputs-alist nil))
 
-
-(use-package ivy-rich
-  :after counsel
-  :init (setq ivy-rich-path-style 'abbrev
-              ivy-virtual-abbreviate 'full)
-  :config (ivy-rich-mode))
-
 (use-package ivy-hydra)
-
 (use-package swiper
   :after ivy
   :bind (("C-s" . swiper)
          ("C-r" . swiper)))
 
 (provide 'ivy.module)
+
+;;; ivy.module.el ends here

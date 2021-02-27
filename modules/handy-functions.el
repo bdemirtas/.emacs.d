@@ -16,15 +16,14 @@
         (insert-uuid-cid uuid)
       (insert uuid))))
 
-(defun comment-or-uncomment-line-or-region ()
-  "Comments or uncomments the current line or region."
-  (interactive)
-  (if (region-active-p)
-      (comment-or-uncomment-region (region-beginning) (region-end))
-    (comment-or-uncomment-region (line-beginning-position) (line-end-position))
-    )
-  )
-
+(defun comment-or-uncomment-region-or-line ()
+    "Comments or uncomments the region or the current line if there's no active region."
+    (interactive)
+    (let (beg end)
+        (if (region-active-p)
+            (setq beg (region-beginning) end (region-end))
+            (setq beg (line-beginning-position) end (line-end-position)))
+        (comment-or-uncomment-region beg end)))
 
 ;; http://ergoemacs.org/emacs/modernization_mark-word.html
 (defun xah-select-text-in-quote ()
@@ -204,7 +203,5 @@ Version 2015-04-09"
       (goto-char $p1))
     (isearch-mode t)
     (isearch-yank-string (buffer-substring-no-properties $p1 $p2))))
-
-
 
 (provide 'handy-functions)

@@ -1,3 +1,12 @@
+;;; python.module.el --- Python setup
+
+;;; Commentary:
+
+;;  Python configuration. This module contain package to auto activated the virtualenv.
+;;  Looking for .env and also autocomplete including with black formatter.
+
+;;; Code:
+
 (use-package pip-requirements)
 
 (use-package pyvenv
@@ -42,3 +51,5 @@
     :bind (:map python-mode-map ("C-c t" . python-pytest-dispatch)))
 
 (provide 'python.module)
+
+;;; python.module.el ends here
