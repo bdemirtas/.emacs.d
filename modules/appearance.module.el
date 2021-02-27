@@ -29,6 +29,7 @@
  show-help-function nil                 ; Disable help text everywhere
  tab-width 4                            ; Set width for tabs
  uniquify-buffer-name-style 'forward    ; Uniquify buffer names
+ ring-bell-function 'ignore             ; Disable ring bell
  window-combination-resize t)           ; Resize windows proportionally
 
 (tool-bar-mode -1)                      ; Remove tool bar
@@ -57,7 +58,7 @@
 (use-package diminish :ensure t)
 (use-package doom-themes
   :defer t
-  :init (load-theme 'doom-dracula t))
+  :init (load-theme 'doom-monokai-spectrum t))
 
 (use-package auto-compile
   :ensure t
