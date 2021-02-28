@@ -6,10 +6,16 @@
 
 ;;; Code:
 
+;; Add metals backend for lsp-mode
+
+;; Add metals backend for lsp-mode
+(use-package lsp-metals
+  :after lsp-mode
+  :config (setq lsp-metals-treeview-show-when-views-received t))
+
 (use-package scala-mode
-  :init
-  (add-hook 'scala-mode-hook #'lsp)
-  (prettify-symbols-mode))
+  :interpreter
+  ("scala" . scala-mode))
 
 ;; Enable scala-mode and sbt-mode
 (use-package scala-mode

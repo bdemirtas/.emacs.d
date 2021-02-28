@@ -23,7 +23,7 @@
  mouse-yank-at-point t                  ; Yank at point rather than pointer
  recenter-positions '(5 top bottom)     ; Set re-centering positions
  scroll-conservatively 101              ; Avoid recentering when scrolling far
- scroll-margin 2                        ; Add a margin when scrolling vertically
+ scroll-margin 5                        ; Add a margin when scrolling vertically
  select-enable-clipboard t              ; Merge system's and Emacs' clipboard
  sentence-end-double-space nil          ; Use a single space after dots
  show-help-function nil                 ; Disable help text everywhere

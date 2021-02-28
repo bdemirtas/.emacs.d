@@ -14,6 +14,7 @@
 (require 'parens.module)
 (require 'vcs.module)
 (require 'sql.module)
+(require 'lsp.module)
 
 (provide 'core.module)
 

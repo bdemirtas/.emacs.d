@@ -28,11 +28,19 @@
   :config
   (counsel-projectile-mode 1))
 
+(setq ivy-height-alist
+      '((t
+         lambda (_caller)
+         (/ (frame-height) 2))))
+
+(add-to-list 'ivy-height-alist
+             (cons 'counsel-find-file
+                   (lambda (_caller)
+                     (/ (frame-height) 2))))
+
 ;;; Ivy Posframe
 (use-package ivy-posframe
-  :if (and (window-system) (version<= "26.1" emacs-version))
-  :hook
-  (ivy-mode . ivy-posframe-mode)
+  :ensure t
   :custom
   (ivy-posframe-size-function 'cpm/ivy-posframe-size)
   (ivy-posframe-height 50)
@@ -46,34 +54,26 @@
      (complete-symbol . ivy-posframe-display-at-point)
      (counsel-M-x     . ivy-posframe-display-at-frame-top-center)
      (t               . ivy-posframe-display-at-frame-top-center)))
-  :custom-face
-  (ivy-posframe-cursor ((t (:background "#268bd2"))))
   :config
-  (ivy-posframe-mode))
-
+  (setq ivy-posframe-parameters
+        '((min-width . 100)
+          (min-height . ,ivy-height)
+          (left-fringe . 1)
+          (right-fringe . 1)
+          (internal-border-width . 10)))
+  (setq ivy-posframe-display-functions-alist '((t . ivy-posframe-display-at-frame-top-center)))
+  (ivy-posframe-mode 1))
+  
 (defun cpm/ivy-posframe-size ()
   (list
    :min-height ivy-height
    :min-width (round (* (frame-width) 0.52))))
 
+
 (use-package company-posframe
   :disabled
   :if (and (window-system) (version<= "26.1" emacs-version))
   :hook (company-mode . company-posframe-mode))
-
-;;; Which-Key Posframe
-(use-package which-key-posframe
-  ;; :disabled
-  :if (and (window-system) (version<= "26.1" emacs-version))
-  :hook (after-init . which-key-posframe-mode)
-  :config
-  (setq posframe-arghandler #'cpm/posframe-arghandler)
-  ;; see https://github.com/yanghaoxie/which-key-posframe/issues/5#issuecomment-527528759
-  (defun cpm/posframe-arghandler (buffer-or-name arg-name value)
-    (let ((info '(:width (round (* (frame-width) 0.72)) :height 75)))
-      (or (plist-get info arg-name) value)))
-  (setq which-key-posframe-border-width 15)
-  (setq which-key-posframe-poshandler 'posframe-poshandler-frame-center))
 
 ;;; Hydra Posframe
 (use-package hydra-posframe
@@ -114,9 +114,20 @@
 
 (use-package ivy-hydra)
 (use-package swiper
-  :after ivy
   :bind (("C-s" . swiper)
-         ("C-r" . swiper)))
+         ("C-r" . swiper)
+         ("C-c C-r" . ivy-resume)
+         :map ivy-minibuffer-map
+         ("C-SPC" . ivy-restrict-to-matches))
+  :init
+  (ivy-mode 1)
+  :config
+  (setq ivy-count-format "(%d/%d) "
+        ivy-display-style 'fancy
+        ivy-height 4
+        ivy-use-virtual-buffers t
+        ivy-initial-inputs-alist () ;; http://irreal.org/blog/?p=6512
+        enable-recursive-minibuffers t))
 
 (provide 'ivy.module)
 
