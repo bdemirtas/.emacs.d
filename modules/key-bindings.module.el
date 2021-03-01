@@ -2,6 +2,8 @@
 (global-set-key (kbd "C-S-f") 'forward-word)
 (global-set-key (kbd "C-S-b") 'backward-word)
 (global-set-key (kbd "C-c c") 'make-directory)
+(global-set-key (kbd "C->") 'indent-rigidly-right-to-tab-stop)
+(global-set-key (kbd "C-<") 'indent-rigidly-left-to-tab-stop)
 
 ;; Emacs control is Ctrl. Emacs Super is Command. Emacs Meta is Alt. Right Alt (option) can be used to enter symbols like em dashes =—=.
 (when (is-mac-p)

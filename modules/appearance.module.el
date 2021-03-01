@@ -27,7 +27,7 @@
  select-enable-clipboard t              ; Merge system's and Emacs' clipboard
  sentence-end-double-space nil          ; Use a single space after dots
  show-help-function nil                 ; Disable help text everywhere
- tab-width 4                            ; Set width for tabs
+ tab-width 2                            ; Set width for tabs
  uniquify-buffer-name-style 'forward    ; Uniquify buffer names
  ring-bell-function 'ignore             ; Disable ring bell
  window-combination-resize t)           ; Resize windows proportionally
@@ -43,6 +43,7 @@
 (set-default-coding-systems 'utf-8)     ; Default to utf-8 encoding
 (global-font-lock-mode t)
 (set-default 'show-trailing-whitespace t)
+(qglobal-display-line-numbers-mode t)
 (global-set-key (kbd "C-c w") 'whitespace-mode)
 (set-frame-font "Roboto Mono" nil t)
 ;; always full screen

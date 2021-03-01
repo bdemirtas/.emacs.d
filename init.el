@@ -96,6 +96,8 @@
 (require 'sx.module)
 (require 'tree.module)
 (require 'core.module)
+(require 'hydra.module)
+(require 'dap.module)
 (require 'handy-functions)
 (require 'key-bindings.module)
 

@@ -14,12 +14,11 @@
   :config (setq lsp-metals-treeview-show-when-views-received t))
 
 (use-package scala-mode
+  :after java-mode
+  :config
+  (require 'dap-java)
   :interpreter
   ("scala" . scala-mode))
-
-;; Enable scala-mode and sbt-mode
-(use-package scala-mode
-  :mode "\\.s\\(cala\\|bt\\)$")
 
 (use-package sbt-mode
   :commands sbt-start sbt-command

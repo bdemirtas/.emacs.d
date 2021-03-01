@@ -28,32 +28,18 @@
   :config
   (counsel-projectile-mode 1))
 
-(setq ivy-height-alist
-      '((t
-         lambda (_caller)
-         (/ (frame-height) 2))))
-
-(add-to-list 'ivy-height-alist
-             (cons 'counsel-find-file
-                   (lambda (_caller)
-                     (/ (frame-height) 2))))
+(use-package ivy
+  :config
+  (setq ivy-use-virtual-buffers t)
+  (setq ivy-count-format "(%d%d)")
+  (ivy-mode 1))
 
 ;;; Ivy Posframe
 (use-package ivy-posframe
   :ensure t
   :custom
-  (ivy-posframe-size-function 'cpm/ivy-posframe-size)
-  (ivy-posframe-height 50)
+  (ivy-posframe-height 20)
   (ivy-posframe-width 70)
-  (ivy-posframe-parameters '((left-fringe . 0)
-                             (right-fringe . 0)
-                             (internal-border-width . 15)))
-  (ivy-posframe-display-functions-alist
-   '((swiper          . ivy-posframe-display-at-frame-top-center)
-     (swiper-isearch  . ivy-posframe-display-at-frame-top-center)
-     (complete-symbol . ivy-posframe-display-at-point)
-     (counsel-M-x     . ivy-posframe-display-at-frame-top-center)
-     (t               . ivy-posframe-display-at-frame-top-center)))
   :config
   (setq ivy-posframe-parameters
         '((min-width . 100)
@@ -63,12 +49,6 @@
           (internal-border-width . 10)))
   (setq ivy-posframe-display-functions-alist '((t . ivy-posframe-display-at-frame-top-center)))
   (ivy-posframe-mode 1))
-  
-(defun cpm/ivy-posframe-size ()
-  (list
-   :min-height ivy-height
-   :min-width (round (* (frame-width) 0.52))))
-
 
 (use-package company-posframe
   :disabled
@@ -89,28 +69,6 @@
   :bind(("C-:" . avy-goto-word-1)
         :map isearch-mode-map
               ("C-'" . avy-isearch)))
-
-
-(use-package ivy :ensure t
-  :diminish (ivy-mode . "")             ; does not display ivy in the modeline
-  :init
-  (ivy-mode 1)                          ; enable ivy globally at startup
-  :bind (:map ivy-minibuffer-map        ; bind in the ivy buffer
-       ("RET" . ivy-alt-done)
-       ("s-<"   . ivy-avy)
-       ("s->"   . ivy-dispatching-done)
-       ("s-+"   . ivy-call)
-       ("s-!"   . ivy-immediate-done)
-       ("s-["   . ivy-previous-history-element)
-       ("s-]"   . ivy-next-history-element))
-  :config
-  (setq enable-recursive-minibuffers t)
-  (setq ivy-use-virtual-buffers t)       ; extend searching to bookmarks and
-  (setq ivy-height 20)                   ; set height of the ivy window
-  (setq ivy-count-format "(%d/%d) ")     ; count format, from the ivy help page
-  (setq ivy-display-style 'fancy)
-  (setq ivy-format-function 'ivy-format-function-line) ; Make highlight extend all the way to the right
-  (setq ivy-initial-inputs-alist nil))
 
 (use-package ivy-hydra)
 (use-package swiper

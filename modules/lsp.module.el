@@ -27,6 +27,7 @@
 (use-package lsp-ivy
   :after lsp-mdoe)
 
+(setq lsp-inhibit-message t)
 
 (provide 'lsp.module)
 

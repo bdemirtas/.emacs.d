@@ -47,11 +47,6 @@
    'org-babel-load-languages
    '((restclient . t))))
 
-(use-package company-restclient
-  :config
-  :after restclient company
-  (add-to-list 'company-backends 'company-restclient))
-
 (provide 'web.module)
 
 ;;; web.module.el ends here

@@ -48,6 +48,14 @@
   :after (company posframe)
   :init (company-posframe-mode 1))
 
+(use-package ejc-company
+:ensure nil
+:after
+ejc-sql-mode
+:config
+(add-to-list (make-local-variable 'company-backends)
+			 '(ejc-company-backend)))
+
 (define-key company-mode-map [remap indent-for-tab-command]
   'company-indent-for-tab-command)
 

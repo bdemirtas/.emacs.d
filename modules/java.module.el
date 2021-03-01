@@ -11,6 +11,10 @@
   :init
   (add-hook 'java-mode-hook #'lsp))
 
+(use-package dap-java
+  :ensure nil
+  :after (lsp-java))
+
 (use-package meghanada
   :defer t
   :config
@@ -19,13 +23,10 @@
 
 (use-package java-snippets)
 
-(use-package dap-mode
-  :after lsp-mode
-  :config
-  (dap-mode t)
-  (dap-ui-mode t))
-
-(require 'dap-java)
+(require 'lsp-java-boot)
+;; to enable the lenses
+(add-hook 'lsp-mode-hook #'lsp-lens-mode)
+(add-hook 'java-mode-hook #'lsp-java-boot-lens-mode)
 
 (provide 'java.module)
 

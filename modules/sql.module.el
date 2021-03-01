@@ -28,14 +28,6 @@
                                 (ejc-eldoc-setup)
                                 (ejc-ac-setup))))
 
-(use-package ejc-company
-:ensure nil
-:after
-ejc-sql-mode
-:config
-(add-to-list (make-local-variable 'company-backends)
-			 '(ejc-company-backend)))
-
 (provide 'sql.module)
 
 ;;; sql.module.el ends here

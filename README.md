@@ -31,3 +31,10 @@ chmod +x coursier
   -r sonatype:snapshots \
   -o /usr/local/bin/metals-emacs -f
 ```
+
+
+# Scala #
+Sbt is a requirement to work with scala and for some sbt-mode
+```bash
+curl -s "https://get.sdkman.io" | bash
+```
