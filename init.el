@@ -1,8 +1,16 @@
 ;;; init.el --- Init setup
 ;; Load manually, the melpa package doesn't contain restclient-jq
-
+;;
 ;;; Commentary:
-
+;; ______                 _      _____
+;; | ___ \               | |    |  ___|
+;; | |_/ /_   _ _ __ __ _| | __ | |__ _ __ ___   __ _  ___ ___
+;; | ___ \ | | | '__/ _` | |/ / |  __| '_ ` _ \ / _` |/ __/ __|
+;; | |_/ / |_| | | | (_| |   <  | |__| | | | | | (_| | (__\__ \
+;; \____/ \__,_|_|  \__,_|_|\_\ \____/_| |_| |_|\__,_|\___|___/
+;;
+;;
+;;
 ;;  Init config. Only load package that needs to be loaded before all modules.
 
 ;;; Code:
@@ -77,6 +85,17 @@
 ;; Save customize in separate file
 (setq custom-file "~/.emacs.d/custom.el")
 (load custom-file)
+
+(use-package general
+    :init
+    (setq general-override-states '(insert
+				    emacs
+				    hybrid
+				    normal
+				    visual
+				    motion
+				    operator
+				    replace)))
 
 (use-package no-littering)
 (use-package delight

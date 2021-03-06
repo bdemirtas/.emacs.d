@@ -11,16 +11,23 @@
   :bind (:map company-active-map
               ("<tab>" . nil)
               ("TAB" . nil)
-              ("M-<tab>" . company-complete-common-or-cycle)
-              ("M-<tab>" . company-complete-selection))
+              ("C-t"   . company-complete);
+              ("C-n"    . company-select-next)
+              ("C-p"    . company-select-previous)
+              ([return] . company-complete-selection)
+              ("C-w"    . backward-kill-word)
+              ("C-g"    . company-abort)
+              ("C-c"    . company-search-abort)
+              ("<tab>"  . complete-or-indent)
+              ("C-s"  . company-search-candidates)
+              ("C-o" . company-search-toggle-filtering))
   (:map lsp-mode-map
         ("M-<tab>" . company-indent-or-complete-common))
   :config
-  (setq company-idle-delay 0
-        company-tooltip-limit 10
+  (setq company-idle-delay 0.5
+        company-tooltip-limit 15
         company-minimum-prefix-length 0
-        company-tooltip-align-annotations t)
-  (global-company-mode t))
+        company-tooltip-align-annotations t))
 
 (use-package company-prescient
   :after company
@@ -41,6 +48,20 @@
   :after restclient
   :config
   (add-to-list 'company-backends 'company-restclient))
+
+(use-package company-posframe
+  :ensure t
+  :after (company posframe)
+  :init (company-posframe-mode 1))
+
+(use-package company-web
+  :after web-mode
+  :config
+  (setq company-tooltip-limit 20)                      ; bigger popup window
+  (setq company-tooltip-align-annotations 't)          ; align annotations to the right tooltip border
+  (setq company-idle-delay .3)                         ; decrease delay before autocompletion popup shows
+  (setq company-begin-commands '(self-insert-command)) ; start autocompletion only after typing
+  :hook (web-mode . company-mode))
 
 (setq tab-always-indent 'complete)
 (defvar completion-at-point-functions-saved nil)

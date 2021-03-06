@@ -8,29 +8,54 @@
 
 
 (use-package lsp-mode
-  :commands (lsp lsp-deferred)
-  :hook
-  (lsp-mode . lsp-enable-which-key-integration)
-  :custom
-  (lsp-auto-guess-root t)
-  (lsp-keymap-prefix "M-m l")
-  (lsp-modeline-diagnostics-enable nil)
-  (lsp-keep-workspace-alive nil)
-  (lsp-auto-execute-action nil)
-  (lsp-before-save-edits nil)
-  (lsp-eldoc-enable-hover nil)
-  (lsp-diagnostic-package :none)
-  (lsp-completion-provider :none)
-  (lsp-file-watch-threshold 1500)  ; pyright has more than 1000
-  (lsp-enable-links nil)
-  (lsp-diagnostics-provider :capf)
-  (lsp-headerline-breadcrumb-enable t)
-  (lsp-headerline-breadcrumb-segments '(project file symbols))
-  (lsp-lens-enable nil)
-  (lsp-disabled-clients '((python-mode . pyls)))
-  :init
-  :config
-  )
+    :defer t
+    :init
+    (defhydra hydra-lsp (:exit t :hint nil)
+      "
+   Buffer^^               Server^^                   Symbol
+  -------------------------------------------------------------------------------------
+   [_f_] format           [_M-r_] restart            [_d_] declaration  [_i_] implementation  [_o_] documentation
+   [_m_] imenu            [_S_]   shutdown           [_D_] definition   [_t_] type            [_r_] rename
+   [_x_] execute action   [_M-s_] describe session   [_R_] references   [_s_] signature"
+      ("d" lsp-find-declaration)
+      ("D" lsp-ui-peek-find-definitions)
+      ("R" lsp-ui-peek-find-references)
+      ("i" lsp-ui-peek-find-implementation)
+      ("t" lsp-find-type-definition)
+      ("s" lsp-signature-help)
+      ("o" lsp-describe-thing-at-point)
+      ("r" lsp-rename)
+
+      ("f" lsp-format-buffer)
+      ("m" lsp-ui-imenu)
+      ("x" lsp-execute-code-action)
+
+      ("M-s" lsp-describe-session)
+      ("M-r" lsp-restart-workspace)
+      ("S" lsp-shutdown-workspace))
+    :general
+    (lsp-mode-map "C-c h" 'hydra-lsp/body)
+    :config
+    (setq lsp-prefer-flymake nil)
+    :custom
+    (lsp-auto-guess-root t)
+    (lsp-keymap-prefix "M-m l")
+    (lsp-modeline-diagnostics-enable nil)
+    (lsp-keep-workspace-alive nil)
+    (lsp-auto-execute-action nil)
+    (lsp-before-save-edits nil)
+    (lsp-eldoc-enable-hover nil)
+    (lsp-diagnostic-package :none)
+    (lsp-completion-provider :none)
+    (lsp-file-watch-threshold 1500)  ; pyright has more than 1000
+    (lsp-enable-links nil)
+    (lsp-diagnostics-provider :capf)
+    (lsp-headerline-breadcrumb-enable t)
+    (lsp-headerline-breadcrumb-segments '(project file symbols))
+    (lsp-lens-enable nil)
+    (lsp-disabled-clients '((python-mode . pyls)))
+    :commands lsp-mode)
+
 
 (use-package
   lsp-treemacs
@@ -40,12 +65,19 @@
 
 (use-package lsp-ui
   :after lsp-mode
-  :custom
-  (lsp-ui-doc-position 'top)
-  (lsp-ui-sideline-delay 0.5)
-  (lsp-ui-doc-delay 0.5)
-  (lsp-ui-peek-always-show t)
-  (lsp-ui-peek-fontify 'always)
+  :config
+  (setq lsp-ui-doc-enable t
+        lsp-ui-sideline-delay 0.5
+        lsp-ui-doc-delay 0.5
+        lsp-ui-peek-always-show t
+        lsp-ui-peek-fontify 'always
+        lsp-ui-doc-use-childframe t
+        lsp-ui-doc-position 'top
+        lsp-ui-doc-include-signature t
+        lsp-ui-sideline-enable nil
+        lsp-ui-flycheck-enable nil
+        lsp-ui-flycheck-live-reporting nil
+        lsp-ui-peek-enable t)
   :commands lsp-ui-mode
   :hook (lsp-mode . lsp-ui-mode))
 

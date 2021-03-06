@@ -92,6 +92,36 @@
               ("C-'" . avy-isearch)))
 
 (use-package ivy-hydra)
+
+;;; Ivy Posframe
+(use-package ivy-posframe
+  :ensure t
+  :custom
+  (ivy-posframe-height 20)
+  (ivy-posframe-width 70)
+  :config
+  (setq ivy-posframe-parameters
+        '((min-width . 100)
+          (min-height . ,ivy-height)
+          (left-fringe . 1)
+          (right-fringe . 1)
+          (internal-border-width . 10)))
+  (setq ivy-posframe-display-functions-alist '((t . ivy-posframe-display-at-frame-top-center)))
+  (ivy-posframe-mode 1))
+
+(use-package company-posframe
+  :disabled
+  :if (and (window-system) (version<= "26.1" emacs-version))
+  :hook (company-mode . company-posframe-mode))
+
+;;; Hydra Posframe
+;; (use-package hydra-posframe
+;;   :disabled
+;;   :if (and (window-system) (version<= "26.1" emacs-version))
+;;   :hook (after-init . hydra-posframe-enable)
+;;   :config
+;;   (setq hydra-posframe-border-width 15))
+
 (use-package swiper
   :bind (("C-s" . swiper)
          ("C-r" . swiper)

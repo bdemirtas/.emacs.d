@@ -40,10 +40,8 @@
   :hook
   (python-mode . pyvenv-mode)
   (python-mode . company-mode)
-  (python-mode . blacken-mode)
   (python-mode . yas-minor-mode)
   :custom
-  ;; NOTE: Set these if Python 3 is called "python3" on your system!
   (python-shell-interpreter "python3")
   :config
   )

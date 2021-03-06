@@ -32,6 +32,10 @@ chmod +x coursier
   -o /usr/local/bin/metals-emacs -f
 ```
 
+Nodejs >= 12 need to be install to make lsp-pyright work correctly
+```bash
+curl -fsSL https://deb.nodesource.com/setup_15.x | sudo -E bash -
+```
 
 # Scala #
 Sbt is a requirement to work with scala and for some sbt-mode
