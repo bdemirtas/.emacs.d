@@ -4,8 +4,6 @@
          ("\\.md\\'" . markdown-mode)
          ("\\.markdown\\'" . markdown-mode))
   :init
-  (add-hook 'markdown-mode-hook #'flyspell-mode)
-  (add-hook 'gfm-mode-hook #'flyspell-mode)
   (add-hook 'markdown-mode-hook #'auto-fill-mode)
   (add-hook 'gfm-mode-hook #'auto-fill-mode)
   (add-hook 'markdown-mode-hook #'ws-butler-mode)

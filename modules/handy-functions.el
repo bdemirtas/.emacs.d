@@ -1,6 +1,18 @@
 (use-package crux)
 (use-package uuidgen)
 
+(defun forward-delete-word (arg)
+  "Delete characters forward until encountering the end of a word.
+With ARG, do this that many times."
+  (interactive "p")
+  (delete-region (point) (progn (forward-word arg) (point))))
+
+(defun backward-delete-word (arg)
+  "Delete characters backward until encountering the end of a word.
+With ARG, do this that many times."
+  (interactive "p")
+  (delete-word (- arg)))
+
 (defun new-buffer ()
   (interactive)
   (switch-to-buffer (generate-new-buffer "buffer"))

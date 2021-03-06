@@ -14,8 +14,7 @@
   (setq magit-completing-read-function 'ivy-completing-read)
   (setq magit-default-tracking-name-function 'magit-default-tracking-name-branch-only)
   (setq vc-handled-backends (delq 'Git vc-handled-backends) magit-repository-directories '(("\~/Projects" . 4)) )
-  :hook ((after-save . magit-after-save-refresh-status)
-         (git-commit-mode . flyspell-mode))
+  :hook ((after-save . magit-after-save-refresh-status))
   :bind (
     ("C-x g s" . magit-status))
     ("C-x g b" . magit-blame)

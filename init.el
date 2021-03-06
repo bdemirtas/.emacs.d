@@ -33,6 +33,12 @@
   (add-to-list 'exec-path "/usr/local/bin/")
   (add-to-list 'exec-path "/usr/bin/"))
 
+(when (is-linux-p)
+  (add-to-list 'exec-path "/usr/local/bin/")
+  (add-to-list 'exec-path "/usr/bin/")
+  (add-to-list 'exec-path "~/.sdkman/candidates/sbt/current/bin/")
+  )
+
 (unless (assoc-default "melpa" package-archives)
   (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t))
 (unless (assoc-default "org" package-archives)
@@ -41,8 +47,6 @@
 (add-to-list 'load-path (concat user-emacs-directory "modules"))
 (add-to-list 'load-path (concat user-emacs-directory "lisp"))
 
-(require 'restclient)
-(require 'restclient-jq)
 ;; update packages list if we are on a new install
 (unless package-archive-contents
   (package-refresh-contents))

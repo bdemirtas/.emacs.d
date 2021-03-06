@@ -9,8 +9,6 @@
 (use-package rst
   :functions sp--rst-skip-asterisk
   :init
-  (add-hook 'rst-mode-hook #'flyspell-mode)
-  (add-hook 'rst-mode-hook #'flycheck-mode)
   (add-hook 'rst-mode-hook #'auto-fill-mode)
   (add-hook 'rst-mode-hook #'ws-butler-mode)
   :config

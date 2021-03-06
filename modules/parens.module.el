@@ -28,6 +28,16 @@
   (sp-local-pair 'minibuffer-inactive-mode "'" nil :actions nil)
   :delight smartparens-mode)
 
+(defun indent-between-pair (&rest _ignored)
+  (newline)
+  (indent-according-to-mode)
+  (forward-line -1)
+  (indent-according-to-mode))
+
+(sp-local-pair 'prog-mode "{" nil :post-handlers '((indent-between-pair "RET")))
+(sp-local-pair 'prog-mode "[" nil :post-handlers '((indent-between-pair "RET")))
+(sp-local-pair 'prog-mode "(" nil :post-handlers '((indent-between-pair "RET")))
+
 (provide 'parens.module)
 
 ;;; parens.module.el ends here

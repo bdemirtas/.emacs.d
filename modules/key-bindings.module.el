@@ -1,19 +1,19 @@
-;; Experimentation keybindings
 (global-set-key (kbd "C-S-f") 'forward-word)
 (global-set-key (kbd "C-S-b") 'backward-word)
 (global-set-key (kbd "C-c c") 'make-directory)
-(global-set-key (kbd "C->") 'indent-rigidly-right-to-tab-stop)
-(global-set-key (kbd "C-<") 'indent-rigidly-left-to-tab-stop)
+(global-set-key (kbd "C-S-<right>") 'indent-rigidly-right-to-tab-stop)
+(global-set-key (kbd "C-S-<left>") 'indent-rigidly-left-to-tab-stop)
+(global-set-key (kbd "C-<backspace>") 'backward-delete-word)
 
 ;; Emacs control is Ctrl. Emacs Super is Command. Emacs Meta is Alt. Right Alt (option) can be used to enter symbols like em dashes =—=.
 (when (is-mac-p)
   (setq
-   mac-right-command-modifier 'super
-   mac-command-modifier 'super
-   mac-option-modifier 'meta
-   mac-left-option-modifier 'meta
-   mac-right-option-modifier 'meta
-   mac-right-option-modifier 'nil))
+    mac-right-command-modifier 'super
+    mac-command-modifier 'super
+    mac-option-modifier 'meta
+    mac-left-option-modifier 'meta
+    mac-right-option-modifier 'meta
+    mac-right-option-modifier 'nil))
 
 ;; ----------------------
 ;; Navigation and editing
@@ -32,12 +32,12 @@
 
 ;;Move more quickly
 (global-set-key (kbd "C-S-n")
-  (lambda ()(interactive)
-    (ignore-errors (next-line 5))))
+(lambda ()(interactive)
+(ignore-errors (next-line 5))))
 
 (global-set-key (kbd "C-S-p")
-  (lambda ()(interactive)
-    (ignore-errors (previous-line 5))))
+(lambda ()(interactive)
+(ignore-errors (previous-line 5))))
 
 (global-set-key (kbd "s-c") 'clipboard-kill-ring-save) ; Cmd + C copy to clipboard
 (global-set-key (kbd "s-x") 'clipboard-kill-region)    ; Cmd + X copy to clipboard

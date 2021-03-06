@@ -20,9 +20,6 @@
   :bind
     (("C-c =" . blacken-buffer)))
 
-;(use-package py-isort
-;  :after python)
-
 (defun pyvenv-autoload ()
           (interactive)
           "auto activate venv directory if exists"
@@ -33,17 +30,23 @@
 
 (add-hook 'python-mode-hook 'pyvenv-autoload)
 
+(use-package lsp-pyright
+  :hook
+  (python-mode . (lambda ()
+                   (require 'lsp-pyright)
+                   (lsp-deferred))))
 
-(use-package anaconda-mode
-  :ensure t
-  :commands anaconda-mode
-  :diminish anaconda-mode
-  :hook python-mode)
-
-(use-package company-anaconda
-  :after (anaconda-mode company)
-  :config (add-to-list 'company-backends 'company-anaconda))
-
+(use-package python-mode
+  :hook
+  (python-mode . pyvenv-mode)
+  (python-mode . company-mode)
+  (python-mode . blacken-mode)
+  (python-mode . yas-minor-mode)
+  :custom
+  ;; NOTE: Set these if Python 3 is called "python3" on your system!
+  (python-shell-interpreter "python3")
+  :config
+  )
 
   (use-package python-pytest
     :after anaconda-mode

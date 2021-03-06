@@ -5,7 +5,6 @@
 
 ;; Case-insensitive search
 (setq case-fold-search t)
-
 (setq current-language-environment "UTF-8")
 (setq default-input-method "utf-8")
 (prefer-coding-system 'utf-8)
@@ -50,10 +49,10 @@
 
 ;; http://www.emacswiki.org/emacs/FlySpell
 ;; Printing messages for every word (when checking the entire buffer) causes an enormous slowdown.
-(use-package flyspell
-  :config
-  (setq flyspell-issue-message-flag nil)
-  :delight flyspell-mode)
+;; (use-package flyspell
+;;   :config
+;;   (setq flyspell-issue-message-flag nil)
+;;   :delight flyspell-mode)
 
 (use-package ispell
   :if (executable-find "aspell")
@@ -99,15 +98,19 @@
 (use-package multiple-cursors
   :config
   (setq mc/always-run-for-all 1)
-  (global-set-key (kbd "s-d") 'mc/mark-next-like-this)
-  (global-set-key (kbd "s-D") 'mc/mark-all-dwim)
-  (define-key mc/keymap (kbd "<return>") nil))
+  ;; (global-set-key (kbd "C-S-l C-S-l") 'mc/edit-lines)
+  (global-set-key (kbd "C->") 'mc/mark-next-like-this)
+  (global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
+  (global-set-key (kbd "C-s->") 'mc/mark-all-like-this)
+  ;; (global-set-key (kbd "C-s-<") 'mc/skip-to-previous-like-this)
+  ;; (global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this)
+  (define-key mc/keymap (kbd "<return>") nil)
 
-;; Source: http://www.emacswiki.org/emacs-en/download/misc-cmds.el
-(defun revert-buffer-no-confirm ()
+  ;; Source: http://www.emacswiki.org/emacs-en/download/misc-cmds.el
+  (defun revert-buffer-no-confirm ()
     "Revert buffer without confirmation."
     (interactive)
-    (revert-buffer :ignore-auto :noconfirm))
+    (revert-buffer :ignore-auto :noconfirm)))
 
 (defun smarter-move-beginning-of-line (arg)
   "Move point back to indentation of beginning of line.

@@ -31,7 +31,6 @@
  uniquify-buffer-name-style 'forward    ; Uniquify buffer names
  ring-bell-function 'ignore             ; Disable ring bell
  window-combination-resize t)           ; Resize windows proportionally
-
 (tool-bar-mode -1)                      ; Remove tool bar
 (scroll-bar-mode -1)                    ; Remove scroll bar
 (delete-selection-mode 1)               ; Replace region when inserting text
@@ -43,13 +42,13 @@
 (set-default-coding-systems 'utf-8)     ; Default to utf-8 encoding
 (global-font-lock-mode t)
 (set-default 'show-trailing-whitespace t)
-(qglobal-display-line-numbers-mode t)
+(global-display-line-numbers-mode t)
 (global-set-key (kbd "C-c w") 'whitespace-mode)
 (set-frame-font "Roboto Mono" nil t)
 ;; always full screen
 (add-to-list 'initial-frame-alist '(fullscreen . maximized))
 (add-to-list 'default-frame-alist '(fullscreen . fullheight))
-
+(recentf-mode t)
 (use-package all-the-icons)
 (use-package doom-modeline
   :init (doom-modeline-mode 1)
@@ -57,9 +56,9 @@
 
 (use-package dash :ensure t)
 (use-package diminish :ensure t)
-(use-package doom-themes
+(use-package cyberpunk-theme
   :defer t
-  :init (load-theme 'doom-monokai-spectrum t))
+  :init (load-theme 'cyberpunk t))
 
 (use-package auto-compile
   :ensure t

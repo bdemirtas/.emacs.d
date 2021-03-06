@@ -47,6 +47,8 @@
    'org-babel-load-languages
    '((restclient . t))))
 
+(require 'restclient)
+(require 'restclient-jq)
 (provide 'web.module)
 
 ;;; web.module.el ends here

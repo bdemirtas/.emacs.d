@@ -17,9 +17,39 @@
          ("C-c l" . counsel-locate)
          :map minibuffer-local-map
          ("C-h" . 'counsel-minibuffer-history))
+  :init
+  (ivy-mode 1)
+  (counsel-mode 1)
   :config
+  (setq ivy-use-virtual-buffers t)
+  (setq enable-recursive-minibuffers t)
   (setq ivy-initial-inputs-alist nil)) ;; Don't start searches with ^ !
 
+(use-package ivy-xref
+  :init
+  ;; xref initialization is different in Emacs 27 - there are two different
+  ;; variables which can be set rather than just one
+  (when (>= emacs-major-version 27)
+    (setq xref-show-definitions-function #'ivy-xref-show-defs))
+  ;; Necessary in Emacs <27. In Emacs 27 it will affect all xref-based
+  ;; commands other than xref-find-definitions (e.g. project-find-regexp)
+  ;; as well
+  (setq xref-show-xrefs-function #'ivy-xref-show-xrefs))
+
+(use-package ivy-rich
+  :init
+  (ivy-rich-mode 1))
+
+(use-package ivy-prescient
+  :after counsel
+  :init
+  (ivy-prescient-mode)
+  (prescient-persist-mode)
+  )
+(use-package prescient
+  :diminish
+  :config
+  )
 (use-package counsel-ag-popup
   :after (counsel))
 
@@ -30,38 +60,29 @@
 
 (use-package ivy
   :config
-  (setq ivy-use-virtual-buffers t)
+  ;; (setq ivy-use-virtual-buffers t)
   (setq ivy-count-format "(%d%d)")
   (ivy-mode 1))
 
-;;; Ivy Posframe
-(use-package ivy-posframe
-  :ensure t
-  :custom
-  (ivy-posframe-height 20)
-  (ivy-posframe-width 70)
-  :config
-  (setq ivy-posframe-parameters
-        '((min-width . 100)
-          (min-height . ,ivy-height)
-          (left-fringe . 1)
-          (right-fringe . 1)
-          (internal-border-width . 10)))
-  (setq ivy-posframe-display-functions-alist '((t . ivy-posframe-display-at-frame-top-center)))
-  (ivy-posframe-mode 1))
+(add-to-list 'ivy-height-alist
+             (cons 'counsel-find-file
+                   (lambda (_caller)
+                     (/ (frame-height) 2))))
 
-(use-package company-posframe
-  :disabled
-  :if (and (window-system) (version<= "26.1" emacs-version))
-  :hook (company-mode . company-posframe-mode))
+(setq ivy-height-alist
+      '((t
+         lambda (_caller)
+         (/ (frame-height) 2))))
+(defun ivy-resize--minibuffer-setup-hook ()
+  "Minibuffer setup hook."
+  (add-hook 'post-command-hook #'ivy-resize--post-command-hook nil t))
 
-;;; Hydra Posframe
-(use-package hydra-posframe
-  :disabled
-  :if (and (window-system) (version<= "26.1" emacs-version))
-  :hook (after-init . hydra-posframe-enable)
-  :config
-  (setq hydra-posframe-border-width 15))
+(defun ivy-resize--post-command-hook ()
+  "Hook run every command in minibuffer."
+  (when ivy-mode
+    (shrink-window (1+ ivy-height))))  ; Plus 1 for the input field.
+
+(add-hook 'minibuffer-setup-hook 'ivy-resize--minibuffer-setup-hook)
 
 ;; Jump to things in Emacs tree-style
 (use-package avy

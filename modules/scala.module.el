@@ -20,6 +20,8 @@
   :interpreter
   ("scala" . scala-mode))
 
+(global-set-key (kbd "C-c S") #'sbt-hydra)
+
 (use-package sbt-mode
   :commands sbt-start sbt-command
   :config
@@ -30,6 +32,8 @@
    'self-insert-command
    minibuffer-local-completion-map))
 
+(add-hook 'sbt-mode-hook (lambda ()
+                           (add-hook 'before-save-hook 'sbt-hydra:check-modified-buffers)))
 (provide 'scala.module)
 
 ;;; scala.module.el ends here

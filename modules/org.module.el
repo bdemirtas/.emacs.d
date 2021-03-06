@@ -33,8 +33,7 @@
                   TeX-source-correlate-start-server t)
             (add-hook 'TeX-after-compilation-finished-functions #'TeX-revert-document-buffer)
             (add-hook 'LaTeX-mode-hook (lambda ()
-                                         (reftex-mode t)
-                                         (flyspell-mode t)))
+                                         (reftex-mode t)))
             (use-package
                 pdf-tools
               :config (progn (pdf-tools-install)
