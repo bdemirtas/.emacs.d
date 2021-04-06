@@ -21,6 +21,16 @@
     ("C-x g l" . magit-log-buffer-file)
   )
 
+(use-package diffview
+  :commands (diffview-region diffview-current)
+  :preface
+  (defun ladicle/diffview-dwim ()
+    (interactive)
+    (if (region-active-p)
+        (diffview-region)
+      (diffview-current)))
+  :bind ("M-g v" . ladicle/diffview-dwim))
+
 (use-package smerge-mode
   :config
   (defhydra unpackaged/smerge-hydra

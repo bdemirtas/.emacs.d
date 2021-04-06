@@ -24,7 +24,7 @@
           (interactive)
           "auto activate venv directory if exists"
           (f-traverse-upwards (lambda (path)
-              (let ((venv-path (f-expand ".env" path)))
+              (let ((venv-path (f-expand "venv" path)))
               (when (f-exists? venv-path)
               (pyvenv-activate venv-path))))))
 
@@ -37,19 +37,22 @@
                    (lsp-deferred))))
 
 (use-package python-mode
+  :ensure t
   :hook
+  (python-mode . lsp-deferred)
   (python-mode . pyvenv-mode)
   (python-mode . company-mode)
   (python-mode . yas-minor-mode)
   :custom
+  (dap-pythonpi-debugger 'debugpy)
   (python-shell-interpreter "python3")
   :config
   )
 
-  (use-package python-pytest
-    :after anaconda-mode
-    :ensure t
-    :bind (:map python-mode-map ("C-c t" . python-pytest-dispatch)))
+(use-package python-pytest
+  :after anaconda-mode
+  :ensure t
+  :bind (:map python-mode-map ("C-c t" . python-pytest-dispatch)))
 
 (provide 'python.module)
 

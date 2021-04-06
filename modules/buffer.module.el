@@ -13,6 +13,26 @@
 
 (use-package undo-fu)
 
+(use-package visual-regexp
+  :bind
+  ("C-c r" . vr/replace)
+  ("C-c q" . vr/query-replace))
+
+;; Experimental
+;; minor mode for killing thing quickly
+(use-package viking-mode
+  :config
+  (viking-global-mode))
+
+;; rebind emacs in a better way
+(use-package mwim
+  :bind
+  ("C-a" . mwim-beginning-of-code-or-line)
+  ("C-e" . mwim-end-of-code-or-line))
+
+;; Quickly jumps between other symbols found at point in Emacs.
+;; M-n and M-p move between symboles
+;; M-' replace all symbols in the buffer
 (use-package smartscan
   :ensure t
   :config
@@ -25,8 +45,7 @@
   (setq save-place-file (concat user-emacs-directory "saved-places")))
 
 (use-package windresize
-  :ensure t
-  :bind ("C-c r" . windresize))
+  :ensure t)
 
 (use-package popwin
   :ensure t
@@ -90,57 +109,85 @@
   (global-undo-tree-mode)
   :delight undo-tree-mode)
 
+(use-package whole-line-or-region
+  :diminish whole-line-or-region-global-mode
+  :config (whole-line-or-region-global-mode t))
+
+(use-package electric-operator)
+
+(use-package anzu
+  :diminish
+  :bind
+  ("C-r"   . anzu-query-replace-regexp)
+  ("C-M-r" . anzu-query-replace-at-cursor-thing)
+  :hook
+  (after-init . global-anzu-mode))
+
 (use-package subword
   :ensure nil
   :hook ((java-mode kotlin-mode go-mode) . subword-mode))
 
-;; Multiple cusors are a must. Make <return> insert a newline; multiple-cursors-mode can still be disabled with C-g.
 (use-package multiple-cursors
-  :config
-  (setq mc/always-run-for-all 1)
-  ;; (global-set-key (kbd "C-S-l C-S-l") 'mc/edit-lines)
-  (global-set-key (kbd "C->") 'mc/mark-next-like-this)
-  (global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
-  (global-set-key (kbd "C-s->") 'mc/mark-all-like-this)
-  ;; (global-set-key (kbd "C-s-<") 'mc/skip-to-previous-like-this)
-  ;; (global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this)
-  (define-key mc/keymap (kbd "<return>") nil)
+  :functions hydra-multiple-cursors
+  :bind
+  ("C-c C-m" . hydra-multiple-cursors/body)
+  :preface
+  ;; insert specific serial number
+  (defvar ladicle/mc/insert-numbers-hist nil)
+  (defvar ladicle/mc/insert-numbers-inc 1)
+  (defvar ladicle/mc/insert-numbers-pad "%01d")
 
-  ;; Source: http://www.emacswiki.org/emacs-en/download/misc-cmds.el
-  (defun revert-buffer-no-confirm ()
-    "Revert buffer without confirmation."
+  (defun ladicle/mc/insert-numbers (start inc pad)
+    "Insert increasing numbers for each cursor specifically."
+    (interactive
+     (list (read-number "Start from: " 0)
+           (read-number "Increment by: " 1)
+           (read-string "Padding (%01d): " nil ladicle/mc/insert-numbers-hist "%01d")))
+    (setq mc--insert-numbers-number start)
+    (setq ladicle/mc/insert-numbers-inc inc)
+    (setq ladicle/mc/insert-numbers-pad pad)
+    (mc/for-each-cursor-ordered
+     (mc/execute-command-for-fake-cursor
+      'ladicle/mc--insert-number-and-increase
+      cursor)))
+
+  (defun ladicle/mc--insert-number-and-increase ()
     (interactive)
-    (revert-buffer :ignore-auto :noconfirm)))
+    (insert (format ladicle/mc/insert-numbers-pad mc--insert-numbers-number))
+    (setq mc--insert-numbers-number (+ mc--insert-numbers-number ladicle/mc/insert-numbers-inc)))
 
-(defun smarter-move-beginning-of-line (arg)
-  "Move point back to indentation of beginning of line.
-
-Move point to the first non-whitespace character on this line.
-If point is already there, move to the beginning of the line.
-Effectively toggle between the first non-whitespace character and
-the beginning of the line.
-
-If ARG is not nil or 1, move forward ARG - 1 lines first.  If
-point reaches the beginning or end of the buffer, stop there."
-  (interactive "^p")
-  (setq arg (or arg 1))
-
-  ;; Move lines first
-  (when (/= arg 1)
-    (let ((line-move-visual nil))
-      (forward-line (1- arg))))
-
-  (let ((orig-point (point)))
-    (back-to-indentation)
-    (when (= orig-point (point))
-      (move-beginning-of-line 1))))
-
-;; https://emacsredux.com/blog/2013/05/22/smarter-navigation-to-the-beginning-of-a-line/
-;; remap C-a to `smarter-move-beginning-of-line'
-(global-set-key [remap move-beginning-of-line]
-                'smarter-move-beginning-of-line)
-
-
+  :config
+  (with-eval-after-load 'hydra
+    (defhydra hydra-multiple-cursors (:color pink :hint nil)
+"
+                                                                        ╔════════╗
+    Point^^^^^^             Misc^^            Insert                            ║ Cursor ║
+  ──────────────────────────────────────────────────────────────────────╨────────╜
+     _k_    _K_    _M-k_    [_l_] edit lines  [_i_] 0...
+     ^↑^    ^↑^     ^↑^     [_m_] mark all    [_a_] letters
+    mark^^ skip^^^ un-mk^   [_s_] sort        [_n_] numbers
+     ^↓^    ^↓^     ^↓^
+     _j_    _J_    _M-j_
+  ╭──────────────────────────────────────────────────────────────────────────────╯
+                           [_q_]: quit, [Click]: point
+"
+          ("l" mc/edit-lines)
+          ("m" mc/mark-all-like-this)
+          ("j" mc/mark-next-like-this)
+          ("J" mc/skip-to-next-like-this)
+          ("M-j" mc/unmark-next-like-this)
+          ("k" mc/mark-previous-like-this)
+          ("K" mc/skip-to-previous-like-this)
+          ("M-k" mc/unmark-previous-like-this)
+          ("s" mc/mark-all-in-region-regexp)
+          ("i" mc/insert-numbers)
+          ("a" mc/insert-letters)
+          ("n" ladicle/mc/insert-numbers)
+          ("<mouse-1>" mc/add-cursor-on-click)
+          ;; Help with click recognition in this hydra
+          ("<down-mouse-1>" ignore)
+          ("<drag-mouse-1>" ignore)
+          ("q" nil))))
 
 (defun my/query-replace (from-string to-string &optional delimited start end)
   "Replace some occurrences of FROM-STRING with TO-STRING.  As each match is

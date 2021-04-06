@@ -6,13 +6,6 @@
 
 ;;; Code:
 
-(use-package eshell-toggle
-  :ensure t
-  :defer t
-  :commands (eshell-toggle)
-  :bind ("s-+" . eshell-toggle)
-  :custom (eshell-toggle-use-projectile-root nil))
-
 (use-package yasnippet
   :ensure t
   :functions yas-reload-all

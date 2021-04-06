@@ -86,6 +86,14 @@
 (setq custom-file "~/.emacs.d/custom.el")
 (load custom-file)
 
+(use-package fancy-narrow
+  :defer t)
+
+(use-package transient
+  :commands (define-transient-command))
+
+(use-package transient-posframe)
+
 (use-package general
     :init
     (setq general-override-states '(insert

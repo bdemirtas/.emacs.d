@@ -58,7 +58,7 @@
 (use-package diminish :ensure t)
 (use-package cyberpunk-theme
   :defer t
-  :init (load-theme 'cyberpunk t))
+  :init (load-theme 'cyberpunk))
 
 (use-package auto-compile
   :ensure t

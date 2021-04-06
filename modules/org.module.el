@@ -12,6 +12,7 @@
   (add-hook 'org-mode-hook #'visual-line-mode))
 
 (use-package ox-twbs)
+(use-package htmlize)
 
 (use-package org-sidebar
   :ensure t
@@ -44,6 +45,12 @@
                              (add-hook 'pdf-view-mode-hook (lambda ()
                                                              (bms/pdf-midnite-amber)))))
             (setq TeX-source-correlate-mode t)))
+
+(use-package org-re-reveal
+  :ensure t
+  :after org
+  :config
+  (setq org-re-reveal-root "file:///home/burki/.emacs.d/js/reveal.js-4.1.0/"))
 
 (use-package
     auctex-latexmk

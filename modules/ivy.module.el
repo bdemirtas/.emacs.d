@@ -7,14 +7,22 @@
 
 ;;; Code:
 
+(use-package posframe)
+
+(use-package ivy
+  :config
+  ;; (setq ivy-use-virtual-buffers t)
+  (setq ivy-count-format "(%d%d)")
+  (ivy-mode 1))
+
+;; TODO I need to think again about the binding to C-x here
 (use-package counsel
   :bind (("M-x" . counsel-M-x)
          ("C-x b" . counsel-ibuffer)
-         ("C-x C-f" . counsel-find-file)
-         ("C-c a" . counsel-ag)
-         ("C-c g" . counsel-git)
-         ("C-c j" . counsel-file-jump)
-         ("C-c l" . counsel-locate)
+         ("C-x f" . counsel-find-file)
+         ("C-x a" . counsel-ag)
+         ("C-x j" . counsel-file-jump)
+         ("C-x l" . counsel-locate)
          :map minibuffer-local-map
          ("C-h" . 'counsel-minibuffer-history))
   :init
@@ -47,9 +55,7 @@
   (prescient-persist-mode)
   )
 (use-package prescient
-  :diminish
-  :config
-  )
+  :diminish)
 (use-package counsel-ag-popup
   :after (counsel))
 
@@ -57,12 +63,6 @@
   :after (counsel projectile)
   :config
   (counsel-projectile-mode 1))
-
-(use-package ivy
-  :config
-  ;; (setq ivy-use-virtual-buffers t)
-  (setq ivy-count-format "(%d%d)")
-  (ivy-mode 1))
 
 (add-to-list 'ivy-height-alist
              (cons 'counsel-find-file
@@ -73,6 +73,7 @@
       '((t
          lambda (_caller)
          (/ (frame-height) 2))))
+
 (defun ivy-resize--minibuffer-setup-hook ()
   "Minibuffer setup hook."
   (add-hook 'post-command-hook #'ivy-resize--post-command-hook nil t))
@@ -93,28 +94,24 @@
 
 (use-package ivy-hydra)
 
-;;; Ivy Posframe
-(use-package ivy-posframe
-  :ensure t
-  :custom
-  (ivy-posframe-height 20)
-  (ivy-posframe-width 70)
-  :config
-  (setq ivy-posframe-parameters
-        '((min-width . 100)
-          (min-height . ,ivy-height)
-          (left-fringe . 1)
-          (right-fringe . 1)
-          (internal-border-width . 10)))
-  (setq ivy-posframe-display-functions-alist '((t . ivy-posframe-display-at-frame-top-center)))
-  (ivy-posframe-mode 1))
+;; Show ivy frame using posframe
+;; (use-package ivy-posframe
+;;   :config
+;;   (ivy-posframe-mode 1)
+;;   :custom
+;;   (ivy-display-function #'ivy-posframe-display-at-frame-center)
+;;   ;; (ivy-posframe-width 130)
+;;   ;; (ivy-posframe-height 11)
+;;   (ivy-posframe-parameters
+;;    '((left-fringe . 5)
+;;      (right-fringe . 5)))
+;;   :custom-face
+;;   (ivy-posframe ((t (:background "#282a36"))))
+;;   (ivy-posframe-border ((t (:background "#6272a4"))))
+;;   (ivy-posframe-cursor ((t (:background "#61bfff"))))
+;;   )
 
-(use-package company-posframe
-  :disabled
-  :if (and (window-system) (version<= "26.1" emacs-version))
-  :hook (company-mode . company-posframe-mode))
-
-;;; Hydra Posframe
+;; ;;; Hydra Posframe
 ;; (use-package hydra-posframe
 ;;   :disabled
 ;;   :if (and (window-system) (version<= "26.1" emacs-version))
@@ -124,8 +121,6 @@
 
 (use-package swiper
   :bind (("C-s" . swiper)
-         ("C-r" . swiper)
-         ("C-c C-r" . ivy-resume)
          :map ivy-minibuffer-map
          ("C-SPC" . ivy-restrict-to-matches))
   :init
@@ -139,5 +134,4 @@
         enable-recursive-minibuffers t))
 
 (provide 'ivy.module)
-
 ;;; ivy.module.el ends here

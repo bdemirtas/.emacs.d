@@ -6,7 +6,6 @@
 
 ;;; Code:
 
-
 (use-package lsp-mode
     :defer t
     :init
@@ -79,6 +78,22 @@
         lsp-ui-flycheck-live-reporting nil
         lsp-ui-peek-enable t)
   :commands lsp-ui-mode
+  :preface
+    (defun ladicle/toggle-lsp-ui-doc ()
+      (interactive)
+      (if lsp-ui-doc-mode
+        (progn
+          (lsp-ui-doc-mode -1)
+          (lsp-ui-doc--hide-frame))
+         (lsp-ui-doc-mode 1)))
+  :bind
+  (:map lsp-mode-map
+        ("C-c C-r" . lsp-ui-peek-find-references)
+        ("C-c C-j" . lsp-ui-peek-find-definitions)
+        ("C-c i"   . lsp-ui-peek-find-implementation)
+        ("C-c m"   . lsp-ui-imenu)
+        ("C-c s"   . lsp-ui-sideline-mode)
+        ("C-c d"   . ladicle/toggle-lsp-ui-doc))
   :hook (lsp-mode . lsp-ui-mode))
 
 (use-package lsp-ivy

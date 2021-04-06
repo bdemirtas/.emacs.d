@@ -24,7 +24,8 @@
 (use-package json-reformat
   :commands json-reformat
   :init (setq json-reformat:indent-width 4)
-  :bind (("C-c C-J" . json-reformat-region)))
+  ;; :bind (("C-c C-J" . json-reformat-region))
+  )
 
 (use-package json-navigator)
 

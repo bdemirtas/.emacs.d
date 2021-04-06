@@ -1,23 +1,23 @@
 (use-package crux)
 (use-package uuidgen)
+(use-package key-chord
+  :config
+  (key-chord-mode 1))
 
-(defun forward-delete-word (arg)
-  "Delete characters forward until encountering the end of a word.
-With ARG, do this that many times."
-  (interactive "p")
-  (delete-region (point) (progn (forward-word arg) (point))))
-
-(defun backward-delete-word (arg)
-  "Delete characters backward until encountering the end of a word.
-With ARG, do this that many times."
-  (interactive "p")
-  (delete-word (- arg)))
+(use-package origami
+  :config
+  (global-set-key (kbd "C-c n o") 'origami-open-node)
+  (global-set-key (kbd "C-c n c") 'origami-close-node)
+  (global-set-key (kbd "C-c n a") 'origami-open-all-nodes)
+  (global-set-key (kbd "C-c n u") 'origami-undo)
+  (global-set-key (kbd "C-c n n") 'origami-show-only-node)
+  (global-set-key (kbd "C-c n TAB") 'origami-recursively-toggle-node))
 
 (defun new-buffer ()
   (interactive)
   (switch-to-buffer (generate-new-buffer "buffer"))
   )
-(global-set-key (kbd "C-c n") 'new-buffer)
+(global-set-key (kbd "C-c b") 'new-buffer)
 
 (defun my/uuidgen-4 (arg)
   "Return an UUID from random numbers (UUIDv4).

@@ -29,3 +29,4 @@ anaconda-mode
 sql-connections.module.el
 *.log
 *.aux
+/js

@@ -9,9 +9,11 @@
 (use-package company
   :diminish company-mode
   :bind (:map company-active-map
-              ("<tab>" . nil)
-              ("TAB" . nil)
-              ("C-t"   . company-complete);
+              ("<tab>"  . nil)
+              ("TAB"    . nil)
+              ("C-d"    . company-show-doc-buffer)
+              ("C-t"    . company-complete)
+              ("C-l"    . company-show-location)
               ("C-n"    . company-select-next)
               ("C-p"    . company-select-previous)
               ([return] . company-complete-selection)
@@ -19,11 +21,13 @@
               ("C-g"    . company-abort)
               ("C-c"    . company-search-abort)
               ("<tab>"  . complete-or-indent)
-              ("C-s"  . company-search-candidates)
-              ("C-o" . company-search-toggle-filtering))
+              ("C-s"    . company-search-candidates)
+              ("C-o"    . company-search-toggle-filtering))
   (:map lsp-mode-map
         ("M-<tab>" . company-indent-or-complete-common))
   :config
+  (use-package company-posframe
+    :hook (company-mode . company-posframe-mode))
   (setq company-idle-delay 0.5
         company-tooltip-limit 15
         company-minimum-prefix-length 0
@@ -36,23 +40,11 @@
   (prescient-persist-mode)
   )
 
-(use-package company-lsp
-  :commands company-lsp
-  :after (company lsp-mode)
-  :config
-  (push 'company-lsp company-backends)
-  (setq company-transformers nil company-lsp-async t company-lsp-cache-candidates nil))
-
 (use-package company-restclient
   :ensure t
   :after restclient
   :config
   (add-to-list 'company-backends 'company-restclient))
-
-(use-package company-posframe
-  :ensure t
-  :after (company posframe)
-  :init (company-posframe-mode 1))
 
 (use-package company-web
   :after web-mode
