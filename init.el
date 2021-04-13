@@ -130,6 +130,8 @@
 (require 'hydra.module)
 (require 'dap.module)
 (require 'handy-functions)
+(require 'dash.module)
+(require 'popper.module)
 (require 'key-bindings.module)
 
 (provide 'init)

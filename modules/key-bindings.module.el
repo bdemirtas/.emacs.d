@@ -16,21 +16,12 @@
 
 (when (is-windows-p)
   (setq
-   ;; make PC keyboard's Win key or other to type Super or Hyper, for emacs running on Windows.
-   (setq w32-pass-lwindow-to-system nil)
-   (setq w32-lwindow-modifier 'super) ; Left Windows key
-
-   (setq w32-pass-rwindow-to-system nil)
-   (setq w32-rwindow-modifier 'super) ; Right Windows key
-
+   ;; make PC keyboard's CapsLock Hyper, for emacs running on Windows.
    (setq w32-pass-apps-to-system nil)
    (setq w32-apps-modifier 'hyper) ; Menu/App key
    )
   )
 
-(when (is-linux-p)
-  ;; (setq x-super-keysym 'super)
-  )
 ;; ----------------------
 ;; Navigation and editing
 (setq require-final-newline t)
@@ -104,7 +95,7 @@
 (global-set-key (kbd "C-;") #'comment-or-uncomment-region-or-line)
 
 ;; Custom Handy Functions mapping
-(global-set-key (kbd "H-/") #'xah-select-text-in-quote)
+;; (global-set-key (kbd "H-/") #'xah-select-text-in-quote)
 (global-set-key (kbd "C-c f") #'counsel-recentf)
 
 ;; Make windmove work in Org mode:
@@ -115,4 +106,10 @@
 
 ;; Eshell
 (global-set-key (kbd "H-`") 'eshell)
+
+;; Hydra
+(bind-keys*("M-m f" . hydra-folding/body))
+
+;; UUID
+(global-set-key (kbd "H-u") 'my/uuidgen-4)
 (provide 'key-bindings.module)

@@ -1,3 +1,11 @@
+;;; org.module.el --- Org mode setup
+
+;;; Commentary:
+
+;;  Org mode and extensions
+
+;;; Code:
+
 (use-package org
   :mode ("\\.org$" . org-mode)
   :bind (("\C-cl" . org-store-link))
@@ -58,3 +66,5 @@
 
 
 (provide 'org.module)
+
+;;; org.module.el ends here

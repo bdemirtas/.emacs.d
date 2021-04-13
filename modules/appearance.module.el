@@ -44,7 +44,10 @@
 (set-default 'show-trailing-whitespace t)
 (global-display-line-numbers-mode t)
 (global-set-key (kbd "C-c w") 'whitespace-mode)
-(set-frame-font "Roboto Mono" nil t)
+
+(add-to-list 'default-frame-alist '(font . "Roboto Mono-14"))
+;; (set-frame-font "Roboto Mono" nil t)
+;; (set-default-font "Roboto Mono 14")
 ;; always full screen
 (add-to-list 'initial-frame-alist '(fullscreen . maximized))
 (add-to-list 'default-frame-alist '(fullscreen . fullheight))
@@ -56,14 +59,21 @@
 
 (use-package dash :ensure t)
 (use-package diminish :ensure t)
-(use-package cyberpunk-theme
+(use-package spacemacs-theme
   :defer t
-  :init (load-theme 'cyberpunk))
+  :init (load-theme 'spacemacs-dark))
 
 (use-package auto-compile
   :ensure t
   :config
   (auto-compile-on-load-mode))
+
+(use-package highlight-indent-guides
+  :diminish highlight-indent-guides-mode
+  :hook (prog-mode . highlight-indent-guides-mode)
+  :config
+  (setq highlight-indent-guides-method 'fill
+        highlight-indent-guides-responsive 'top))
 
 (provide 'appearance.module)
 

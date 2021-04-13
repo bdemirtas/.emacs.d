@@ -43,7 +43,7 @@
 
 ;; Docker
 (use-package docker
-  :bind ("C-c d" . docker))
+  :bind ("C-c C-d" . docker))
 
 (use-package dockerfile-mode
   :mode ("\\Dockerfile\\'" . dockerfile-mode))

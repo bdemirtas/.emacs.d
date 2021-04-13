@@ -38,6 +38,7 @@
     (setq lsp-prefer-flymake nil)
     :custom
     (lsp-auto-guess-root t)
+    (lsp-enable-snippet t)
     (lsp-keymap-prefix "M-m l")
     (lsp-modeline-diagnostics-enable nil)
     (lsp-keep-workspace-alive nil)

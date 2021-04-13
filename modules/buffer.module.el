@@ -189,29 +189,15 @@
           ("<drag-mouse-1>" ignore)
           ("q" nil))))
 
-(defun my/query-replace (from-string to-string &optional delimited start end)
-  "Replace some occurrences of FROM-STRING with TO-STRING.  As each match is
-found, the user must type a character saying what to do with it. This is a
-modified version of the standard `query-replace' function in `replace.el',
-This modified version defaults to operating on the entire buffer instead of
-working only from POINT to the end of the buffer. For more information, see
-the documentation of `query-replace'"
-  (interactive
-   (let ((common
-      (query-replace-read-args
-       (concat "Query replace"
-           (if current-prefix-arg " word" "")
-           (if (and transient-mark-mode mark-active) " in region" ""))
-       nil)))
-     (list (nth 0 common) (nth 1 common) (nth 2 common)
-       (if (and transient-mark-mode mark-active)
-           (region-beginning)
-         (buffer-end -1))
-       (if (and transient-mark-mode mark-active)
-           (region-end)
-         (buffer-end 1)))))
-  (perform-replace from-string to-string t nil delimited nil nil start end))
-;; Replace the default key mapping
-(define-key esc-map "%" 'my/query-replace)
+(use-package expand-region
+  :bind
+  (("H-=" . er/expand-region)
+   ("H-/" . er/mark-symbol)
+   ("H--" . er/contract-region)))
+
+(use-package hungry-delete
+  :ensure t
+  :config
+  (global-hungry-delete-mode))
 
 (provide 'buffer.module)
