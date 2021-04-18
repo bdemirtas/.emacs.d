@@ -43,17 +43,12 @@
   (setq ivy-initial-inputs-alist nil)) ;; Don't start searches with ^ !
 
 (use-package ivy-xref
+  :after ivy
   :init
-  ;; xref initialization is different in Emacs 27 - there are two different
-  ;; variables which can be set rather than just one
-  (when (>= emacs-major-version 27)
-    (setq xref-show-definitions-function #'ivy-xref-show-defs))
-  ;; Necessary in Emacs <27. In Emacs 27 it will affect all xref-based
-  ;; commands other than xref-find-definitions (e.g. project-find-regexp)
-  ;; as well
   (setq xref-show-xrefs-function #'ivy-xref-show-xrefs))
 
 (use-package ivy-rich
+  :after ivy
   :init
   (ivy-rich-mode 1))
 
@@ -65,14 +60,20 @@
   )
 
 (use-package ivy-posframe
+  :after ivy
   :config
-  (setq ivy-posframe-display-functions-alist '((t . ivy-posframe-display-at-frame-center))
+  (setq ivy-posframe-display-functions-alist
+        '(
+          (t . ivy-posframe-display-at-frame-center)
+          (swiper . ivy-display-function-fallback)
+          (complete-symbol . ivy-posframe-display-at-point))
         ivy-posframe-parameters '((left-fringe . 8)
                                   (right-fringe . 8)))
   (ivy-posframe-mode 1))
 
 (use-package prescient
   :diminish)
+
 (use-package counsel-ag-popup
   :after (counsel))
 
@@ -127,14 +128,6 @@
   (ivy-posframe-border ((t (:background "#6272a4"))))
   (ivy-posframe-cursor ((t (:background "#61bfff"))))
   )
-
-;; ;;; Hydra Posframe
-;; (use-package hydra-posframe
-;;   :disabled
-;;   :if (and (window-system) (version<= "26.1" emacs-version))
-;;   :hook (after-init . hydra-posframe-enable)
-;;   :config
-;;   (setq hydra-posframe-border-width 15))
 
 (use-package swiper
   :bind (("C-s" . swiper)

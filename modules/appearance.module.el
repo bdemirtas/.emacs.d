@@ -41,6 +41,7 @@
 (put 'upcase-region 'disabled nil)      ; Enable upcase-region
 (set-default-coding-systems 'utf-8)     ; Default to utf-8 encoding
 (global-font-lock-mode t)
+(global-auto-revert-mode t)
 (set-default 'show-trailing-whitespace t)
 (global-display-line-numbers-mode t)
 (global-set-key (kbd "C-c w") 'whitespace-mode)
@@ -74,6 +75,9 @@
   :config
   (setq highlight-indent-guides-method 'fill
         highlight-indent-guides-responsive 'top))
+
+(use-package fancy-narrow
+  :defer t)
 
 (provide 'appearance.module)
 

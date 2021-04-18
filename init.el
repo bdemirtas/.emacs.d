@@ -69,6 +69,9 @@
   :config (auto-compile-on-load-mode))
 (setq load-prefer-newer t)
 
+;; Remove warning
+(setq byte-compile-warnings '(cl-functions))
+
 ;; I don't care about auto save and backup files.
 (setq
  make-backup-files nil  ; stop creating backup~ files
@@ -85,14 +88,6 @@
 ;; Save customize in separate file
 (setq custom-file "~/.emacs.d/custom.el")
 (load custom-file)
-
-(use-package fancy-narrow
-  :defer t)
-
-(use-package transient
-  :commands (define-transient-command))
-
-(use-package transient-posframe)
 
 (use-package general
     :init
@@ -113,9 +108,6 @@
 (use-package which-key
   :config
   (add-hook 'after-init-hook 'which-key-mode))
-(use-package auto-compile
-  :config
-  (auto-compile-on-load-mode))
 
 ;; Loading modules
 (require 'python.module)

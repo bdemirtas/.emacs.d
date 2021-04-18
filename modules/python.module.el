@@ -50,7 +50,7 @@
   )
 
 (use-package python-pytest
-  :after anaconda-mode
+  :after python-mode
   :ensure t
   :bind (:map python-mode-map ("C-c t" . python-pytest-dispatch)))
 

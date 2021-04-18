@@ -4,6 +4,10 @@
 (global-set-key (kbd "C-S-<right>") 'indent-rigidly-right-to-tab-stop)
 (global-set-key (kbd "C-S-<left>") 'indent-rigidly-left-to-tab-stop)
 
+;; set buffer list to ibuffer
+(global-set-key (kbd "C-c b") 'new-buffer)
+(global-set-key (kbd "C-x C-b") 'ibuffer)
+
 ;; Emacs control is Ctrl. Emacs Super is Command. Emacs Meta is Alt. Right Alt (option) can be used to enter symbols like em dashes =—=.
 (when (is-mac-p)
   (setq
@@ -50,7 +54,6 @@
 (global-set-key (kbd "H-<backspace>") 'kill-whole-line)
 (global-set-key (kbd "M-S-<backspace>") 'kill-word)
 (global-set-key (kbd "M-<delete>") 'kill-word)
-(bind-key* "S-<delete>" 'kill-word)
 
 ;; Use =hyper= (which is =Caps Lock=) for movement and selection
 (global-set-key (kbd "H-<left>") 'beginning-of-visual-line)
@@ -85,7 +88,6 @@
 (global-set-key (kbd "C-c D") #'crux-delete-file-and-buffer)
 (global-set-key [remap kill-whole-line] #'crux-kill-whole-line)
 (global-set-key [(shift return)] #'crux-smart-open-line)
-(key-chord-define-global "dd" 'kill-whole-line)
 (key-chord-define-global "yy" 'yank-whole-line)
 (key-chord-define-global "sl" 'xaoh-select-line)
 (key-chord-define-global "sb" 'xah-select-block)

@@ -1,3 +1,32 @@
+;;; buffer.module.el --- Setup buffer bahaviour
+;; group buffer by categorie
+
+;;; Commentary:
+;;  Everything related to ibuffer customizations.
+
+;;; Code:
+
+(setq ibuffer-saved-filter-groups
+      '(("default"
+	 ("Emacs-config" (or (filename . ".emacs.d") (filename . "emacs-config")))
+   ("Dired" (mode . dired-mode))
+   ("Org" (name . "^.*org$"))
+	 ("Web" (or (mode . web-mode) (mode . js2-mode)))
+   ("Python" (mode . python-mode))
+	 ("Magit" (name . "\*magit"))
+	 ("Help" (or (name . "\*Help\*") (name . "\*Apropos\*") (name . "\*info\*"))))))
+
+;; Don't show filter groups if there are no buffers in that group
+(setq ibuffer-show-empty-filter-groups nil)
+;; Don't ask for confirmation to delete marked buffers
+(setq ibuffer-expert t)
+
+(add-hook 'ibuffer-mode-hook
+(lambda ()
+(ibuffer-auto-mode 1)
+(ibuffer-switch-to-saved-filter-groups "default")))
+
+
 (use-package compile
   :defines compilation-scroll-output
   :init
@@ -201,3 +230,5 @@
   (global-hungry-delete-mode))
 
 (provide 'buffer.module)
+
+;;; buffer.module.el ends here

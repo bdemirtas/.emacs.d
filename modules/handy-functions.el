@@ -17,7 +17,6 @@
   (interactive)
   (switch-to-buffer (generate-new-buffer "buffer"))
   )
-(global-set-key (kbd "C-c b") 'new-buffer)
 
 (defun my/uuidgen-4 (arg)
   "Return an UUID from random numbers (UUIDv4).

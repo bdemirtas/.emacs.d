@@ -15,7 +15,7 @@
   -------------------------------------------------------------------------------------
    [_f_] format           [_M-r_] restart            [_d_] declaration  [_i_] implementation  [_o_] documentation
    [_m_] imenu            [_S_]   shutdown           [_D_] definition   [_t_] type            [_r_] rename
-   [_x_] execute action   [_M-s_] describe session   [_R_] references   [_s_] signature"
+   [_x_] execute action   [_M-s_] describe session   [_R_] references   [_s_] signature       [_l_] display symbols"
       ("d" lsp-find-declaration)
       ("D" lsp-ui-peek-find-definitions)
       ("R" lsp-ui-peek-find-references)
@@ -24,6 +24,7 @@
       ("s" lsp-signature-help)
       ("o" lsp-describe-thing-at-point)
       ("r" lsp-rename)
+      ("l" lsp-treemacs-symbols)
 
       ("f" lsp-format-buffer)
       ("m" lsp-ui-imenu)
@@ -47,7 +48,7 @@
     (lsp-eldoc-enable-hover nil)
     (lsp-diagnostic-package :none)
     (lsp-completion-provider :none)
-    (lsp-file-watch-threshold 1500)  ; pyright has more than 1000
+    (lsp-file-watch-threshold 20000)  ; pyright has more than 1000
     (lsp-enable-links nil)
     (lsp-diagnostics-provider :capf)
     (lsp-headerline-breadcrumb-enable t)
