@@ -65,7 +65,7 @@
   (setq ivy-posframe-display-functions-alist
         '(
           (t . ivy-posframe-display-at-frame-center)
-          (swiper . ivy-display-function-fallback)
+          ;; (swiper . ivy-display-function-fallback)
           (complete-symbol . ivy-posframe-display-at-point))
         ivy-posframe-parameters '((left-fringe . 8)
                                   (right-fringe . 8)))

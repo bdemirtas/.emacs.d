@@ -106,9 +106,6 @@
 (add-hook 'org-shiftdown-final-hook 'windmove-down)
 (add-hook 'org-shiftright-final-hook 'windmove-right)
 
-;; Eshell
-(global-set-key (kbd "H-`") 'eshell)
-
 ;; Hydra
 (bind-keys*("M-m f" . hydra-folding/body))
 

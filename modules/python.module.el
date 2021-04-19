@@ -54,6 +54,19 @@
   :ensure t
   :bind (:map python-mode-map ("C-c t" . python-pytest-dispatch)))
 
+(use-package importmagic
+    :ensure t
+    :config
+    (add-hook 'python-mode-hook 'importmagic-mode))
+
+(use-package vterm)
+(use-package shell-pop
+  :custom
+  (shell-pop-shell-type '("vterm" "*vterm*" (lambda () (vterm))))
+  (shell-pop-full-span t)
+  :bind*
+  (("H-`" . shell-pop)))
+
 (provide 'python.module)
 
 ;;; python.module.el ends here

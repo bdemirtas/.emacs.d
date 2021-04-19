@@ -1,7 +1,7 @@
 Package dependency
 
 # Ubuntu #
-  * silversearcher-ag ripgrep libpq-dev python-dev libxml2-dev libxslt1-dev libldap2-dev libsasl2-dev libffi-dev python3-dev python3-venv texlive-latex-extra pandoc auctex
+  * silversearcher-ag ripgrep libpq-dev python-dev libxml2-dev libxslt1-dev libldap2-dev libsasl2-dev libffi-dev python3-dev python3-venv texlive-latex-extra pandoc auctex libtool-bin
 
 # lsp #
 ```bash

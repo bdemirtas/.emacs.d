@@ -110,6 +110,8 @@
   (add-hook 'after-init-hook 'which-key-mode))
 
 ;; Loading modules
+(require 'telegram.module)
+(require 'dashboard.module)
 (require 'python.module)
 (require 'web.module)
 (require 'java.module)
