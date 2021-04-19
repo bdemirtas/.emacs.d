@@ -17,10 +17,6 @@
 
 (use-package jq-mode)
 
-(use-package counsel-jq
-  :after json-mode
-  :bind (:map json-mode-map ("C-c C-s" . counsel-jq)))
-
 (use-package json-reformat
   :commands json-reformat
   :init (setq json-reformat:indent-width 4)

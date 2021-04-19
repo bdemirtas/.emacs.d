@@ -89,30 +89,22 @@
 (setq custom-file "~/.emacs.d/custom.el")
 (load custom-file)
 
-(use-package general
-    :init
-    (setq general-override-states '(insert
-				    emacs
-				    hybrid
-				    normal
-				    visual
-				    motion
-				    operator
-				    replace)))
-
-(use-package no-littering)
-(use-package delight
-  :config
-  (delight 'visual-line-mode))
-(use-package bind-key)
-(use-package which-key
-  :config
-  (add-hook 'after-init-hook 'which-key-mode))
-
 ;; Loading modules
+(require 'core.module)
+(require 'appearance.module)
+(require 'ivy.module)
+(require 'counsel.module)
+(require 'company.module)
+(require 'popper.module)
+(require 'buffer.module)
+(require 'hydra.module)
+(require 'lsp.module)
+(require 'project.module)
+(require 'parens.module)
+(require 'vcs.module)
+(require 'sql.module)
 (require 'telegram.module)
 (require 'dashboard.module)
-(require 'python.module)
 (require 'web.module)
 (require 'java.module)
 (require 'scala.module)
@@ -120,12 +112,10 @@
 (require 'org.module)
 (require 'sx.module)
 (require 'tree.module)
-(require 'core.module)
-(require 'hydra.module)
 (require 'dap.module)
 (require 'handy-functions)
 (require 'dash.module)
-(require 'popper.module)
+(require 'python.module)
 (require 'key-bindings.module)
 
 (provide 'init)

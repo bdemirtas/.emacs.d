@@ -73,7 +73,7 @@
   :diminish highlight-indent-guides-mode
   :hook (prog-mode . highlight-indent-guides-mode)
   :config
-  (setq highlight-indent-guides-method 'fill
+  (setq highlight-indent-guides-method 'bitmap
         highlight-indent-guides-responsive 'top))
 
 (use-package fancy-narrow

@@ -30,12 +30,6 @@
 
 (add-hook 'python-mode-hook 'pyvenv-autoload)
 
-(use-package lsp-pyright
-  :hook
-  (python-mode . (lambda ()
-                   (require 'lsp-pyright)
-                   (lsp-deferred))))
-
 (use-package python-mode
   :ensure t
   :hook

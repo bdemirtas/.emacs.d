@@ -15,9 +15,6 @@
   (yas-global-mode 1)
   :delight yas-minor-mode)
 
-(use-package ivy-yasnippet
-  :bind ("C-c C-y" . ivy-yasnippet))
-
 (use-package flycheck
   :ensure t)
 

@@ -84,20 +84,17 @@
 
 ;; Crux
 (global-set-key (kbd "C-w") #'backward-kill-word)
+(global-set-key (kbd "C-c i") #'crux-find-user-init-file)
 (global-set-key (kbd "C-c d") #'crux-duplicate-current-line-or-region)
 (global-set-key (kbd "C-c D") #'crux-delete-file-and-buffer)
+(global-set-key (kbd "C-<backspace>") #'crux-kill-line-backwards)
+(global-set-key (kbd "C-k") #'crux-kill-and-join-forward)
 (global-set-key [remap kill-whole-line] #'crux-kill-whole-line)
 (global-set-key [(shift return)] #'crux-smart-open-line)
 (key-chord-define-global "yy" 'yank-whole-line)
-(key-chord-define-global "sl" 'xaoh-select-line)
 (key-chord-define-global "sb" 'xah-select-block)
-;; (key-chord-define-global "eb" 'eval-buffer)
 
-;; Comment
-(global-set-key (kbd "C-;") #'comment-or-uncomment-region-or-line)
-
-;; Custom Handy Functions mapping
-;; (global-set-key (kbd "H-/") #'xah-select-text-in-quote)
+(global-set-key (kbd "H-/") #'easy-mark-word)
 (global-set-key (kbd "C-c f") #'counsel-recentf)
 
 ;; Make windmove work in Org mode:

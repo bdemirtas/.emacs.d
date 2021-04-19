@@ -1,13 +1,14 @@
-;;; autocomplete.module.el --- Autocomplete setup
+;;; company.module.el --- Company setup
 
 ;;; Commentary:
 
-;;  This module contain every package related to autocomplete functions.
+;;  This module contain every package related to company functions.
 
 ;;; Code:
 
 (use-package company
   :diminish company-mode
+  :after lsp-mode
   :bind (:map company-active-map
               ("<tab>"  . nil)
               ("TAB"    . nil)
@@ -58,6 +59,6 @@
 (setq tab-always-indent 'complete)
 (defvar completion-at-point-functions-saved nil)
 
-(provide 'autocomplete.module)
+(provide 'company.module)
 
-;;; autocomplete.module.el ends here
+;;; company.module.el ends here

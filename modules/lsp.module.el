@@ -6,6 +6,16 @@
 
 ;;; Code:
 
+(use-package lsp-pyright
+  :after lsp-mode
+  :custom
+  (lsp-pyright-auto-import-completions nil)
+  (lsp-pyright-typechecking-mode "off")
+  :hook
+  (python-mode . (lambda ()
+                   (require 'lsp-pyright)
+                   (lsp-deferred))))
+
 (use-package lsp-mode
     :defer t
     :init
@@ -37,6 +47,8 @@
     (lsp-mode-map "C-c h" 'hydra-lsp/body)
     :config
     (setq lsp-prefer-flymake nil)
+    :hook
+    (lsp-mode . lsp-enable-which-key-integration)
     :custom
     (lsp-auto-guess-root t)
     (lsp-enable-snippet t)
@@ -56,7 +68,6 @@
     (lsp-lens-enable nil)
     (lsp-disabled-clients '((python-mode . pyls)))
     :commands lsp-mode)
-
 
 (use-package
   lsp-treemacs

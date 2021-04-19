@@ -16,7 +16,6 @@
   (add-hook 'dashboard-mode-hook 'my/dashboard-banner)
   :config
   (setq dashboard-startup-banner 'logo)
-  (setq dashboard-startup-banner 'nil)
   (dashboard-setup-startup-hook))
 
 
