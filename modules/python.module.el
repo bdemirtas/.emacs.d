@@ -53,7 +53,6 @@
     :config
     (add-hook 'python-mode-hook 'importmagic-mode))
 
-(use-package vterm)
 (use-package shell-pop
   :custom
   (shell-pop-shell-type '("vterm" "*vterm*" (lambda () (vterm))))

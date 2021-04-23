@@ -8,7 +8,7 @@
          ("C-x b" . counsel-ibuffer)
          ("C-c C-r" . ivy-resume)
          ("C-x C-f" . counsel-find-file)
-         ("C-c a" . counsel-ag)
+         ("C-c k" . counsel-ag)
          ("C-c g" . counsel-git)
          ("C-c j" . counsel-git-grep)
          ("C-c l" . counsel-locate)

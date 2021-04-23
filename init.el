@@ -92,8 +92,8 @@
 ;; Loading modules
 (require 'core.module)
 (require 'appearance.module)
-(require 'ivy.module)
 (require 'counsel.module)
+(require 'ivy.module)
 (require 'company.module)
 (require 'popper.module)
 (require 'buffer.module)

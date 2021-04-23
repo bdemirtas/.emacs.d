@@ -10,14 +10,6 @@
     (setq hydra-is-helpful t)
     (setq hydra-hint-display-type 'lv))
 
-;; for reference when I learn hydra better
-;; gives access to functions that make nice hydra UI
-(use-package pretty-hydra
-   :disabled
-   :ensure t
-   :requires hydra)
-;; http://www.masteringemacs.org/articles/2014/02/28/my-emacs-keybindings/
-
 (defhydra hydra-buffer-menu (:color pink
                              :hint nil)
   "

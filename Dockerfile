@@ -1,8 +1,9 @@
 # Dockerfile
 
-FROM ubuntu:20.04
+FROM silex/emacs:27.2-dev
+
 RUN apt-get update
-RUN apt-get install -y emacs
+RUN apt-get install sqlite3
 
 COPY ./entrypoint.sh /
 
