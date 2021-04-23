@@ -1,7 +1,18 @@
 Package dependency
 
 # Ubuntu #
-  * silversearcher-ag ripgrep libpq-dev python-dev libxml2-dev libxslt1-dev libldap2-dev libsasl2-dev libffi-dev python3-dev python3-venv texlive-latex-extra pandoc auctex libtool-bin
+  * silversearcher-ag ripgrep libpq-dev python-dev libxml2-dev libxslt1-dev libldap2-dev libsasl2-dev libffi-dev python3-dev python3-venv texlive-latex-extra pandoc auctex libtool-bin graphviz
+
+# Telga #
+```bash
+git clone https://github.com/tdlib/td.git ~/td
+cd td
+mkdir build
+cd build
+cmake -DCMAKE_BUILD_TYPE=Release ..
+cmake --build .
+sudo make install
+```
 
 # lsp #
 ```bash

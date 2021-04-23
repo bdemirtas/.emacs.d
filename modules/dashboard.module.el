@@ -13,7 +13,6 @@
                      ))
   :init
   (add-hook 'after-init-hook 'dashboard-refresh-buffer)
-  (add-hook 'dashboard-mode-hook 'my/dashboard-banner)
   :config
   (setq dashboard-startup-banner 'logo)
   (dashboard-setup-startup-hook))

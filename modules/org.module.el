@@ -8,20 +8,41 @@
 
 (use-package org
   :mode ("\\.org$" . org-mode)
-  :bind (("\C-cl" . org-store-link))
+  :bind (("C-c a"  . org-agenda)
+         ("C-c l"  . org-store-link)
+         ("C-c c"  . org-capture))
   :custom
   (org-log-done t)
   (org-startup-indented t)
+  (org-directory "~/~.org")
+
+  (org-agenda-files (list "~/~.org/blog.org"
+                          "~/~.org/personal.org"
+                          "~/~.org/ideas.org"
+                          "~/~.org/home.org"))
   :config
     (setq org-todo-keywords
     '((sequence "TODO(t)" "NEXT(n)" "|" "DONE(d!)")
       (sequence "BACKLOG(b)" "PLAN(p)" "READY(r)" "ACTIVE(a)" "REVIEW(v)" "WAIT(w@/!)" "HOLD(h)" "|" "COMPLETED(c)" "CANC(k@)")))
 
-  (add-hook 'org-mode-hook #'visual-line-mode))
+    (add-hook 'org-mode-hook #'visual-line-mode))
+
+(use-package org-super-agenda
+  :ensure t
+  :after org
+  :config
+  (setq org-super-agenda-groups
+        '((:name "Today" :time-grid t)
+          (:name "Important" :priority "A")
+          (:name "Next" :priority<= "B")
+          (:todo "IN-PROGRESS" :order 1)
+          (:todo "SCHEDULED" :order 2)
+          (:tag "job" :order 3)
+          (:tag "personal" :order 4)))
+  (org-super-agenda-mode 1))
 
 (use-package ox-twbs)
 (use-package htmlize)
-
 (use-package org-sidebar
   :ensure t
   :after org)
@@ -64,6 +85,19 @@
     auctex-latexmk
   :hook (LaTeX-mode . auctex-latexmk-setup))
 
+(use-package org-roam
+      :ensure t
+      :hook
+      (after-init . org-roam-mode)
+      :custom
+      (org-roam-directory "~/.roam")
+      :bind (:map org-roam-mode-map
+              (("C-c n l" . org-roam)
+               ("C-c n f" . org-roam-find-file)
+               ("C-c n g" . org-roam-graph))
+              :map org-mode-map
+              (("C-c n i" . org-roam-insert))
+              (("C-c n I" . org-roam-insert-immediate))))
 
 (provide 'org.module)
 
