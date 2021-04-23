@@ -6,7 +6,7 @@ RUN apt-get install -y emacs
 
 COPY ./entrypoint.sh /
 
-WORKDIR /tmp/.emacs.d
-COPY . /tmp/.emacs.d
+WORKDIR /root/.emacs.d
+COPY . /root/.emacs.d
 
 CMD ["/entrypoint.sh"]
