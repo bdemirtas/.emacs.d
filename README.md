@@ -1,3 +1,5 @@
+[![Build Status](https://jenkins.kodpanik.com/buildStatus/icon?job=emacs)](https://jenkins.kodpanik.com/job/emacs/)
+
 Package dependency
 
 # Ubuntu #
