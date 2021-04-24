@@ -53,9 +53,11 @@
     :config
     (add-hook 'python-mode-hook 'importmagic-mode))
 
+;; need to fix this
 (use-package shell-pop
   :custom
-  (shell-pop-shell-type '("vterm" "*vterm*" (lambda () (vterm))))
+  (shell-pop-term-shell "/usr/bin/zsh")
+  (shell-pop-shell-type (quote ("ansi-term" "*ansi-term*" (lambda nil (ansi-term shell-pop-term-shell)))))
   (shell-pop-full-span t)
   :bind*
   (("H-`" . shell-pop)))

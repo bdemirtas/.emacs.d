@@ -19,12 +19,12 @@
   (setq xref-show-xrefs-function #'ivy-xref-show-xrefs))
 
 (use-package ivy-rich
-  :after ivy
+  :after (ivy counsel)
   :init
   (ivy-rich-mode 1))
 
 (use-package ivy-prescient
-  :after counsel
+  :after (ivy counsel)
   :init
   (ivy-prescient-mode)
   (prescient-persist-mode)
