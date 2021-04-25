@@ -14,7 +14,7 @@
 ;; Jump to things in Emacs tree-style
 (use-package avy
   :ensure t
-  :bind(("C-:" . avy-goto-word-1)
+  :bind(("C-." . avy-goto-word-1)
         :map isearch-mode-map
         ("C-'" . avy-isearch)))
 
@@ -52,19 +52,6 @@
   :ensure t
   :config
   (which-key-mode 1))
-
-;; (use-package which-key-posframe
-;;   :diminish which-key-mode
-;;   :custom-face
-;;   (which-key-posframe ((t (:background "#282a36"))))
-;;   (which-key-posframe-border ((t (:background "#6272a4"))))
-;;   :config
-;;   (which-key-mode)
-;;   :custom
-;;   (which-key-idle-secondary-delay 0)
-;;   :hook
-;;   (dashboard-after-initialize . which-key-posframe-mode)
-;;   (dashboard-after-initialize . which-key-mode))
 
 (provide 'core.module)
 

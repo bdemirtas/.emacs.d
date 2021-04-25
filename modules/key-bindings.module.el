@@ -12,19 +12,11 @@
 (when (is-mac-p)
   (setq
     mac-right-command-modifier 'super
-    mac-command-modifier 'hyper
+    mac-command-modifier 'super
     mac-option-modifier 'meta
     mac-left-option-modifier 'meta
     mac-right-option-modifier 'meta
     mac-right-option-modifier 'nil))
-
-(when (is-windows-p)
-  (setq
-   ;; make PC keyboard's CapsLock Hyper, for emacs running on Windows.
-   (setq w32-pass-apps-to-system nil)
-   (setq w32-apps-modifier 'hyper) ; Menu/App key
-   )
-  )
 
 ;; ----------------------
 ;; Navigation and editing
@@ -47,33 +39,33 @@
 (lambda ()(interactive)
 (ignore-errors (previous-line 5))))
 
-(global-set-key (kbd "H-c") 'clipboard-kill-ring-save) ; Cmd + C copy to clipboard
-(global-set-key (kbd "H-x") 'clipboard-kill-region)    ; Cmd + X copy to clipboard
-(global-set-key (kbd "H-v") 'clipboard-yank)           ; Cmd + V paste from clipboard
+(global-set-key (kbd "s-c") 'clipboard-kill-ring-save) ; Cmd + C copy to clipboard
+(global-set-key (kbd "s-x") 'clipboard-kill-region)    ; Cmd + X copy to clipboard
+(global-set-key (kbd "s-v") 'clipboard-yank)           ; Cmd + V paste from clipboard
 
-(global-set-key (kbd "H-<backspace>") 'kill-whole-line)
+(global-set-key (kbd "s-<backspace>") 'kill-whole-line)
 (global-set-key (kbd "M-S-<backspace>") 'kill-word)
 (global-set-key (kbd "M-<delete>") 'kill-word)
 
 ;; Use =hyper= (which is =Caps Lock=) for movement and selection
-(global-set-key (kbd "H-<left>") 'beginning-of-visual-line)
-(global-set-key (kbd "H-<right>") 'end-of-visual-line)
-(global-set-key (kbd "H-<up>") 'beginning-of-buffer)
-(global-set-key (kbd "H-<down>") 'end-of-buffer)
-(global-set-key (kbd "H-l") 'goto-line)
+(global-set-key (kbd "s-<left>") 'beginning-of-visual-line)
+(global-set-key (kbd "s-<right>") 'end-of-visual-line)
+(global-set-key (kbd "s-<up>") 'beginning-of-buffer)
+(global-set-key (kbd "s-<down>") 'end-of-buffer)
+(global-set-key (kbd "s-l") 'goto-line)
 
 ;; Basic things you should expect
-(global-set-key (kbd "H-a") 'mark-whole-buffer)       ;; select all
-(global-set-key (kbd "H-s") 'save-buffer)             ;; save
-(global-set-key (kbd "H-S") 'write-file)              ;; save as
-(global-set-key (kbd "H-q") 'save-buffers-kill-emacs) ;; quit
+(global-set-key (kbd "s-a") 'mark-whole-buffer)       ;; select all
+(global-set-key (kbd "s-s") 'save-buffer)             ;; save
+(global-set-key (kbd "s-S") 'write-file)              ;; save as
+(global-set-key (kbd "s-q") 'save-buffers-kill-emacs) ;; quit
 
 ;; Regular undo-redo.
 (global-unset-key (kbd "C-z"))
 (global-set-key (kbd "C-z")   'undo-fu-only-undo)
-(global-set-key (kbd "H-z")   'undo-fu-only-undo)
+(global-set-key (kbd "s-z")   'undo-fu-only-undo)
 (global-set-key (kbd "C-S-z") 'undo-fu-only-redo)
-(global-set-key (kbd "H-r")   'undo-fu-only-redo)
+(global-set-key (kbd "s-r")   'undo-fu-only-redo)
 
 ;;; ; Upcase word and region using the same keys.
 (global-set-key (kbd "M-u") 'upcase-dwim)
@@ -94,7 +86,7 @@
 (key-chord-define-global "yy" 'yank-whole-line)
 (key-chord-define-global "sb" 'xah-select-block)
 
-(global-set-key (kbd "H-/") #'easy-mark-word)
+(global-set-key (kbd "s-/") #'easy-mark-word)
 (global-set-key (kbd "C-c f") #'counsel-recentf)
 
 ;; Make windmove work in Org mode:
@@ -107,5 +99,5 @@
 (bind-keys*("M-m f" . hydra-folding/body))
 
 ;; UUID
-(global-set-key (kbd "H-u") 'my/uuidgen-4)
+(global-set-key (kbd "s-u") 'my/uuidgen-4)
 (provide 'key-bindings.module)

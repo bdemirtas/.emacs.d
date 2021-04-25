@@ -60,7 +60,7 @@
   (shell-pop-shell-type (quote ("ansi-term" "*ansi-term*" (lambda nil (ansi-term shell-pop-term-shell)))))
   (shell-pop-full-span t)
   :bind*
-  (("H-`" . shell-pop)))
+  (("s-`" . shell-pop)))
 
 (provide 'python.module)
 

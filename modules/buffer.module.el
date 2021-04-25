@@ -157,72 +157,17 @@
   :hook ((java-mode kotlin-mode go-mode) . subword-mode))
 
 (use-package multiple-cursors
-  :functions hydra-multiple-cursors
-  :bind
-  ("C-c C-m" . hydra-multiple-cursors/body)
-  :preface
-  ;; insert specific serial number
-  (defvar ladicle/mc/insert-numbers-hist nil)
-  (defvar ladicle/mc/insert-numbers-inc 1)
-  (defvar ladicle/mc/insert-numbers-pad "%01d")
-
-  (defun ladicle/mc/insert-numbers (start inc pad)
-    "Insert increasing numbers for each cursor specifically."
-    (interactive
-     (list (read-number "Start from: " 0)
-           (read-number "Increment by: " 1)
-           (read-string "Padding (%01d): " nil ladicle/mc/insert-numbers-hist "%01d")))
-    (setq mc--insert-numbers-number start)
-    (setq ladicle/mc/insert-numbers-inc inc)
-    (setq ladicle/mc/insert-numbers-pad pad)
-    (mc/for-each-cursor-ordered
-     (mc/execute-command-for-fake-cursor
-      'ladicle/mc--insert-number-and-increase
-      cursor)))
-
-  (defun ladicle/mc--insert-number-and-increase ()
-    (interactive)
-    (insert (format ladicle/mc/insert-numbers-pad mc--insert-numbers-number))
-    (setq mc--insert-numbers-number (+ mc--insert-numbers-number ladicle/mc/insert-numbers-inc)))
-
   :config
-  (with-eval-after-load 'hydra
-    (defhydra hydra-multiple-cursors (:color pink :hint nil)
-"
-                                                                        ╔════════╗
-    Point^^^^^^             Misc^^            Insert                            ║ Cursor ║
-  ──────────────────────────────────────────────────────────────────────╨────────╜
-     _k_    _K_    _M-k_    [_l_] edit lines  [_i_] 0...
-     ^↑^    ^↑^     ^↑^     [_m_] mark all    [_a_] letters
-    mark^^ skip^^^ un-mk^   [_s_] sort        [_n_] numbers
-     ^↓^    ^↓^     ^↓^
-     _j_    _J_    _M-j_
-  ╭──────────────────────────────────────────────────────────────────────────────╯
-                           [_q_]: quit, [Click]: point
-"
-          ("l" mc/edit-lines)
-          ("m" mc/mark-all-like-this)
-          ("j" mc/mark-next-like-this)
-          ("J" mc/skip-to-next-like-this)
-          ("M-j" mc/unmark-next-like-this)
-          ("k" mc/mark-previous-like-this)
-          ("K" mc/skip-to-previous-like-this)
-          ("M-k" mc/unmark-previous-like-this)
-          ("s" mc/mark-all-in-region-regexp)
-          ("i" mc/insert-numbers)
-          ("a" mc/insert-letters)
-          ("n" ladicle/mc/insert-numbers)
-          ("<mouse-1>" mc/add-cursor-on-click)
-          ;; Help with click recognition in this hydra
-          ("<down-mouse-1>" ignore)
-          ("<drag-mouse-1>" ignore)
-          ("q" nil))))
+  (global-set-key (kbd "C-c C-c") 'mc/edit-lines)
+  (global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
+  (global-set-key (kbd "C->") 'mc/mark-next-like-this)
+  (global-set-key (kbd "C-*") 'mc/mark-all-like-this))
 
 (use-package expand-region
   :bind
-  (("H-=" . er/expand-region)
-   ("H-/" . er/mark-symbol)
-   ("H--" . er/contract-region)))
+  (("s-=" . er/expand-region)
+   ("s-/" . er/mark-symbol)
+   ("s--" . er/contract-region)))
 
 (use-package hungry-delete
   :ensure t
