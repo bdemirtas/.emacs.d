@@ -1,4 +1,4 @@
-[![Build Status](https://jenkins.kodpanik.com/buildStatus/icon?job=emacs)](https://jenkins.kodpanik.com/job/emacs/)
+[![Build Status](https://jenkins.kodpanik.com/buildStatus/icon?job=Emacs+2%2Fmaster)](https://jenkins.kodpanik.com/job/Emacs%202/job/master/)
 
 Package dependency
 
