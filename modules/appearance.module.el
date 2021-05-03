@@ -40,6 +40,7 @@
 (put 'downcase-region 'disabled nil)    ; Enable downcase-region
 (put 'upcase-region 'disabled nil)      ; Enable upcase-region
 (set-default-coding-systems 'utf-8)     ; Default to utf-8 encoding
+(delete-selection-mode t)
 (global-font-lock-mode t)
 (global-auto-revert-mode t)
 (set-default 'show-trailing-whitespace t)
