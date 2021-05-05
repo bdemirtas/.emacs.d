@@ -31,16 +31,19 @@
   (counsel-projectile-mode 1))
 
 (use-package counsel-dash
+  :ensure t
 	:config
-    (setq counsel-dash-min-length 3)
-		(setq counsel-dash-common-docsets '())
-		(setq counsel-dash-docsets-path "~/.docsets")
-		(setq counsel-dash-browser-func 'browse-url)
-		(add-hook 'emacs-lisp-mode-hook (lambda () (setq-local counsel-dash-docsets '("Emacs Lisp"))))
-		(add-hook 'go-mode-hook (lambda () (setq-local counsel-dash-docsets '("Go"))))
-		(add-hook 'rust-mode-hook (lambda () (setq-local counsel-dash-docsets '("Rust"))))
-		(add-hook 'scala-mode-hook (lambda () (setq-local counsel-dash-docsets '("Scala"))))
-		(add-hook 'python-mode-hook (lambda () (setq-local counsel-dash-docsets '("Python 3", "Django", "FlaskS")))))
+  (global-set-key (kbd "M-g d") 'counsel-dash-at-point)
+  (global-set-key (kbd "M-g D") 'counsel-dash)
+  (setq counsel-dash-min-length 2)
+	;; (setq counsel-dash-common-docsets '("Python 3"))
+	;; (setq counsel-dash-docsets-(point)ath "~/.docsets")
+	(setq counsel-dash-browser-func 'browse-url)
+	(add-hook 'emacs-lisp-mode-hook (lambda () (setq-local counsel-dash-docsets '("Emacs Lisp"))))
+	(add-hook 'go-mode-hook (lambda () (setq-local counsel-dash-docsets '("Go"))))
+	(add-hook 'rust-mode-hook (lambda () (setq-local counsel-dash-docsets '("Rust"))))
+	(add-hook 'scala-mode-hook (lambda () (setq-local counsel-dash-docsets '("Scala"))))
+	(add-hook 'python-mode-hook (lambda () (setq-local counsel-dash-docsets '("python 3", "Django", "Flask")))))
 
 (use-package counsel-jq
   :after json-mode
