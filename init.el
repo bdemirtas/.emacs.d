@@ -17,7 +17,7 @@
 
 (package-initialize)
 (setq use-package-always-ensure t)
-
+(use-package exec-path-from-shell)
 (defun is-mac-p ()
   "If it's mac os."
   (eq system-type 'darwin))
@@ -35,9 +35,10 @@
 
 (defun is-bsd-p ()
   "If it's BSD."
-  (eq system-type 'gnu/kfreebsd))
+  (eq system-type 'gnu/freebsd))
 
 (when (is-mac-p)
+  (exec-path-from-shell-initialize)
   (add-to-list 'exec-path "/usr/local/bin/")
   (add-to-list 'exec-path "/usr/bin/"))
 

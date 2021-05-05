@@ -11,11 +11,11 @@
 ;; Emacs control is Ctrl. Emacs Super is Command. Emacs Meta is Alt. Right Alt (option) can be used to enter symbols like em dashes =—=.
 (when (is-mac-p)
   (setq
-    mac-right-command-modifier 'super
-    mac-command-modifier 'super
-    mac-option-modifier 'meta
-    mac-left-option-modifier 'meta
-    mac-right-option-modifier 'meta
+    mac-right-command-modifier 'meta
+    mac-command-modifier 'meta
+    mac-option-modifier 'super
+    mac-left-option-modifier 'super
+    mac-right-option-modifier 'super
     mac-right-option-modifier 'nil))
 
 ;; ----------------------
