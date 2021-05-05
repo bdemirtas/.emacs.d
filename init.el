@@ -17,7 +17,7 @@
 
 (package-initialize)
 (setq use-package-always-ensure t)
-(use-package exec-path-from-shell)
+
 (defun is-mac-p ()
   "If it's mac os."
   (eq system-type 'darwin))
@@ -38,14 +38,9 @@
   (eq system-type 'gnu/freebsd))
 
 (when (is-mac-p)
-  (exec-path-from-shell-initialize)
-  (add-to-list 'exec-path "/usr/local/bin/")
-  (add-to-list 'exec-path "/usr/bin/"))
+  )
 
 (when (is-linux-p)
-  (add-to-list 'exec-path "/usr/local/bin/")
-  (add-to-list 'exec-path "/usr/bin/")
-  (add-to-list 'exec-path "~/.sdkman/candidates/sbt/current/bin/")
   )
 
 (unless (assoc-default "melpa" package-archives)
@@ -118,6 +113,8 @@
 (require 'dash.module)
 (require 'python.module)
 (require 'key-bindings.module)
+(require 'unix.module)
+(require 'osx.module)
 
 (provide 'init)
 

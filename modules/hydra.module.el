@@ -40,7 +40,7 @@ _~_: modified
   ("o" Buffer-menu-other-window "other-window" :color blue)
   ("q" quit-window "quit" :color blue))
 
-(define-key Buffer-menu-mode-map "." 'hydra-buffer-menu/body)
+(define-key ibuffer-mode-map "." 'hydra-buffer-menu/body)
 
 (provide 'hydra.module)
 

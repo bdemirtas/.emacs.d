@@ -6,6 +6,9 @@
 
 ;;; Code:
 
+(use-package exec-path-from-shell
+  :ensure t)
+
 (use-package posframe)
 
 (use-package prescient

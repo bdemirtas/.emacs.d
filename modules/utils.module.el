@@ -15,8 +15,8 @@
   (yas-global-mode 1)
   :delight yas-minor-mode)
 
-(use-package flycheck
-  :ensure t)
+;; (use-package flycheck
+;;   :ensure t)
 
 (use-package helpful
   :ensure t

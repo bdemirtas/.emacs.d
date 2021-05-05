@@ -6,17 +6,7 @@
 
 ;; set buffer list to ibuffer
 (global-set-key (kbd "C-c b") 'new-buffer)
-;; (global-set-key (kbd "C-x C-b") 'ibuffer)
-
-;; Emacs control is Ctrl. Emacs Super is Command. Emacs Meta is Alt. Right Alt (option) can be used to enter symbols like em dashes =—=.
-(when (is-mac-p)
-  (setq
-    mac-right-command-modifier 'meta
-    mac-command-modifier 'meta
-    mac-option-modifier 'super
-    mac-left-option-modifier 'super
-    mac-right-option-modifier 'super
-    mac-right-option-modifier 'nil))
+(global-set-key (kbd "C-x C-b") 'ibuffer)
 
 ;; ----------------------
 ;; Navigation and editing
