@@ -70,14 +70,6 @@
   :config
   (auto-compile-on-load-mode))
 
-(use-package highlight-indent-guides
-  :diminish highlight-indent-guides-mode
-  :hook (prog-mode . highlight-indent-guides-mode)
-  :config
-  (setq highlight-indent-guides-method 'bitmap
-        highlight-indent-guides-auto-enabled nil
-        highlight-indent-guides-responsive 'top))
-
 (use-package fancy-narrow
   :defer t)
 

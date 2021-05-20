@@ -37,7 +37,7 @@
 (global-set-key (kbd "M-S-<backspace>") 'kill-word)
 (global-set-key (kbd "M-<delete>") 'kill-word)
 
-;; Use =hyper= (which is =Caps Lock=) for movement and selection
+;; Use =superr= (which is =Caps Lock=) for movement and selection
 (global-set-key (kbd "s-<left>") 'beginning-of-visual-line)
 (global-set-key (kbd "s-<right>") 'end-of-visual-line)
 (global-set-key (kbd "s-<up>") 'beginning-of-buffer)

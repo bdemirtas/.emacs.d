@@ -78,13 +78,13 @@
 (use-package lsp-ui
   :after lsp-mode
   :config
-  (setq lsp-ui-doc-enable t
-        lsp-ui-sideline-delay 0.5
-        lsp-ui-doc-delay 0.5
+  (setq lsp-ui-doc-enable nil
+        lsp-ui-sideline-delay 1.0
+        lsp-ui-doc-delay 1.0
         lsp-ui-peek-always-show t
         lsp-ui-peek-fontify 'always
         lsp-ui-doc-use-childframe t
-        lsp-ui-doc-position 'top
+        lsp-ui-doc-position 'at-point
         lsp-ui-doc-include-signature t
         lsp-ui-sideline-enable nil
         lsp-ui-flycheck-enable nil
@@ -98,7 +98,7 @@
         (progn
           (lsp-ui-doc-mode -1)
           (lsp-ui-doc--hide-frame))
-         (lsp-ui-doc-mode 1)))
+         (lsp-ui-doc-mode nil)))
   :bind
   (:map lsp-mode-map
         ("C-c C-r" . lsp-ui-peek-find-references)
