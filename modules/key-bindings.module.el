@@ -65,16 +65,19 @@
 (global-set-key (kbd "C-c eb") 'ejc-get-temp-editor-buffer)
 
 ;; Crux
+(global-set-key [remap move-beginning-of-line] #'crux-move-beginning-of-line)
+(global-set-key (kbd "C-c o") #'crux-open-with)
+(global-set-key [(shift return)] #'crux-smart-open-line)
+(global-set-key (kbd "C-<backspace>") #'crux-kill-line-backwards)
+(global-set-key [remap kill-whole-line] #'crux-kill-whole-line)
+
 (global-set-key (kbd "C-w") #'backward-kill-word)
 (global-set-key (kbd "C-c i") #'crux-find-user-init-file)
 (global-set-key (kbd "C-c d") #'crux-duplicate-current-line-or-region)
 (global-set-key (kbd "C-c D") #'crux-delete-file-and-buffer)
-(global-set-key (kbd "C-<backspace>") #'crux-kill-line-backwards)
 (global-set-key (kbd "C-k") #'crux-kill-and-join-forward)
 (global-set-key [remap kill-whole-line] #'crux-kill-whole-line)
 (global-set-key [(shift return)] #'crux-smart-open-line)
-(key-chord-define-global "yy" 'yank-whole-line)
-(key-chord-define-global "sb" 'xah-select-block)
 
 (global-set-key (kbd "s-/") #'easy-mark-word)
 (global-set-key (kbd "C-c f") #'counsel-recentf)

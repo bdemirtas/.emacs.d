@@ -9,7 +9,7 @@
 (use-package lsp-pyright
   :after lsp-mode
   :custom
-  (lsp-pyright-auto-import-completions nil)
+  (lsp-pyright-auto-import-completions t)
   (lsp-pyright-typechecking-mode "off")
   :hook
   (python-mode . (lambda ()
